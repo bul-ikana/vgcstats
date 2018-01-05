@@ -1,0 +1,37 @@
+.jumbotron {
+    padding-top: 2rem;
+}
+
+.jumbotron img {
+    margin-right: 1rem;
+}
+
+.div-card-img {
+    height: 15rem;
+    position: relative;
+}
+
+.card-img-top {
+   position: absolute;  
+    top: 0;  
+    bottom: 0;  
+    left: 0;  
+    right: 0;  
+    margin: auto;
+    max-height: 15rem;
+    width: auto;
+}
+
+.footer {
+  bottom: 0;
+  width: 100%;
+  min-height: 50px;
+  line-height: 50px;
+  background-color: #e9ecef;
+}
+
+.submit {
+    margin-top:7px;
+    margin-bottom:7px;
+
+}
