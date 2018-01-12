@@ -4,10 +4,12 @@ $(function () {
   $('[data-toggle="popover"]').popover({ trigger: "click hover" })
   $('#submit').click(function () {
     alert("Register coming soon!");
-  })
+  });
 })
 
 // Vue stuff
+
+var sheetUrl = "";
 
 var pokecard = Vue.component('pokecard', {
   template: '#pokecard',
@@ -74,5 +76,15 @@ var app = new Vue({
             },
         ]
     }
+  },
+  mounted() {
+      $.get({
+        url: sheetUrl,
+        jsonp: "callback",
+        dataType: "jsonp",
+        success: function( data ) {
+            console.log( data.feed );
+        }
+      });
   }
 });
