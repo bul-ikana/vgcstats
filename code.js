@@ -16,6 +16,7 @@ var pokecard = Vue.component('pokecard', {
     'image',
     'cp',
     'cpwu',
+    'rank',
   ]
 });
 
@@ -48,6 +49,7 @@ var vm = new Vue({
               name: row.Pokemon, 
               image: row.Image, 
               cp: row.TotalCP, 
+              rank: row.Rank,
               cpwu: row.CPusage, 
             });
           });
