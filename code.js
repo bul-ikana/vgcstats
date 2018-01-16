@@ -26,7 +26,7 @@ var vm = new Vue({
   },
   mounted() {
     var pokedata = this;
-    
+
     var cpSheet = new Miso.Dataset({
       importer : Miso.Dataset.Importers.GoogleSpreadsheet,
       parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
@@ -34,16 +34,22 @@ var vm = new Vue({
       worksheet : "12"
     });
 
-    cpSheet.fetch({ 
+    cpSheet.fetch({
       success : function() {
-        cpSheet.each(function (row, rowIndex) {
-          pokedata.pokemon.push({
-            name: row.Pokemon, 
-            image: row.Image, 
-            cp: row.TotalCP, 
-            cpwu: row.CPusage, 
+        cpSheet
+          .where({
+            rows: function(row) {
+              return row.TotalCP > 0;
+            }
+          })
+          .each(function (row, rowIndex) {
+            pokedata.pokemon.push({
+              name: row.Pokemon, 
+              image: row.Image, 
+              cp: row.TotalCP, 
+              cpwu: row.CPusage, 
+            });
           });
-        });
       },
 
       error : function() {
