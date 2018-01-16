@@ -25,13 +25,21 @@
           </div>
           <div class="div-card-img"><img class="card-img-top px-5 align-middle img-fluid" :src="image" alt="Card image cap"></div>
           <div class="card-body">
-            <p class="card-text"><strong>{{cp}}</strong> CP | <strong>{{cpwu}}%</strong> <span data-toggle="popover" title="CP-Weighted Usage" data-content="Usage throughout all Top Cut/Day 2 finishes, weighted to that Pokemon’s total CP earnings throughout all Top Cut/Day 2 finishes. For example, if Pikachu had 25% CP-Weighted Usage, that would mean ¼ of the CP earned in Top Cut/Day 2 of 2018 tournaments was earned by Pikachu players.">CP-WU</span></p>
+            <p class="card-text"><strong>{{cp}}</strong> CP | <strong>{{cpwu}}</strong> <span data-toggle="popover" title="CP-Weighted Usage" data-content="Usage throughout all Top Cut/Day 2 finishes, weighted to that Pokemon’s total CP earnings throughout all Top Cut/Day 2 finishes. For example, if Pikachu had 25% CP-Weighted Usage, that would mean ¼ of the CP earned in Top Cut/Day 2 of 2018 tournaments was earned by Pikachu players.">CP-WU</span></p>
           </div>
         </div>
       </div>
     </template>
 
     <div id="app" class="container">
+      <div class="spinner" v-show="loading">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+      </div>
+
       <div class="row">
         <pokecard 
           v-for="poke in pokemon"
@@ -43,18 +51,21 @@
       </div> 
     </div>
 
-    <footer class="footer">
+    <!-- <footer class="footer">
       <div class="container">
         <span class="text-muted">If you're going to a MSS, could you please keep a record of the # of players and the teams in top cut?
-        <button type_="button" id="submit" class="btn btn-success submit float-right">Submit teams</button>
         </span>
       </div>
-    </footer>
+    </footer> -->
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script type="text/javascript" src="https://github.s3.amazonaws.com/downloads/misoproject/dataset/miso.ds.deps.ie.min.0.3.0.js"></script>
     <script src="code.js"></script>
   </body>
 </html>

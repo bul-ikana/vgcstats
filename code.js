@@ -4,7 +4,7 @@ $(function () {
   $('[data-toggle="popover"]').popover({ trigger: "click hover" })
   $('#submit').click(function () {
     alert("Register coming soon!");
-  })
+  });
 })
 
 // Vue stuff
@@ -19,60 +19,44 @@ var pokecard = Vue.component('pokecard', {
   ]
 });
 
-var app = new Vue({
+var vm = new Vue({
   el: '#app',
-  data: function () {
-    return {
-        pokemon: [
-            {
-                name: 'Landorus-T',
-                image: 'https://www.serebii.net/art/th/645-s.png',
-                cp: 282,
-                cpwu: 55.51,
-            },
-            {
-                name: 'Tapu Fini',
-                image: 'https://www.serebii.net/art/th/788.png',
-                cp: 215,
-                cpwu: 42.32,
-            },
-            {
-                name: 'Amoongus',
-                image: 'https://www.serebii.net/art/th/591.png',
-                cp: 182,
-                cpwu: 35.83,
-            },
-            {
-                name: 'Zapdos',
-                image: 'https://www.serebii.net/art/th/145.png',
-                cp: 150,
-                cpwu: 29.53,
-            },
-            {
-                name: 'Tapu Bulu',
-                image: 'https://www.serebii.net/art/th/787.png',
-                cp: 137,
-                cpwu: 26.97,
-            },
-            {
-                name: 'Snorlax',
-                image: 'https://www.serebii.net/art/th/143.png',
-                cp: 115,
-                cpwu: 22.64,
-            },
-            {
-                name: 'M-Charizard Y',
-                image: 'https://www.serebii.net/art/th/6-my.png',
-                cp: 114,
-                cpwu: 22.44,
-            },
-            {
-                name: 'Tapu Lele',
-                image: 'https://www.serebii.net/art/th/786.png',
-                cp: 107,
-                cpwu: 21.06,
-            },
-        ]
-    }
+  data:{
+    pokemon: [],
+    loading: true,
+  },
+  mounted() {
+    var data = this;
+
+    var cpSheet = new Miso.Dataset({
+      importer : Miso.Dataset.Importers.GoogleSpreadsheet,
+      parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
+      key : "1WUNrJWrsAK_7EEIn2L0QyMC2SArXqGIOpJ4G1XrlU20",
+      worksheet : "12"
+    });
+
+    cpSheet.fetch({
+      success : function() {
+        cpSheet
+          .where({
+            rows: function(row) {
+              return row.TotalCP > 0;
+            }
+          })
+          .each(function (row, rowIndex) {
+            data.pokemon.push({
+              name: row.Pokemon, 
+              image: row.Image, 
+              cp: row.TotalCP, 
+              cpwu: row.CPusage, 
+            });
+          });
+        data.loading = false;
+      },
+
+      error : function() {
+        console.log("Are you sure you are connected to the internet?");
+      }
+    });
   }
 });
