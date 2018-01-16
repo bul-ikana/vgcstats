@@ -23,9 +23,10 @@ var vm = new Vue({
   el: '#app',
   data:{
     pokemon: [],
+    loading: true,
   },
   mounted() {
-    var pokedata = this;
+    var data = this;
 
     var cpSheet = new Miso.Dataset({
       importer : Miso.Dataset.Importers.GoogleSpreadsheet,
@@ -43,13 +44,14 @@ var vm = new Vue({
             }
           })
           .each(function (row, rowIndex) {
-            pokedata.pokemon.push({
+            data.pokemon.push({
               name: row.Pokemon, 
               image: row.Image, 
               cp: row.TotalCP, 
               cpwu: row.CPusage, 
             });
           });
+        data.loading = false;
       },
 
       error : function() {
