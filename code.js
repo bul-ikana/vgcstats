@@ -14,6 +14,7 @@ var vm = new Vue({
   data:{
     pokemon: [],
     loading: true,
+    searchTerm: ''
   },
   mounted() {
     var data = this;
