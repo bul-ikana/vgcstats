@@ -15,7 +15,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>
     <link rel="stylesheet" href="styles.css" >
+    <link rel="icon" type="image/png" href="https://www.serebii.net/shuffle/pokemon/576.png">
 
     <title>VGCStats</title>
   </head>
@@ -30,12 +32,18 @@
     <template id ="pokecard">
       <div class="col-md-4 col-lg-3 col-sm-6"> 
         <div class="card text-center my-2">
-          <div class="card-header h5">
+          <div class="card-header h6">
             <span class="badge badge-secondary float-left badge-pill">#{{ rank }}</span>{{ name }}
           </div>
           <div class="div-card-img"><img class="card-img-top px-5 align-middle img-fluid" :src="image" alt="Card image cap"></div>
           <div class="card-body">
-            <p class="card-text"><strong>{{ cp }}</strong> CP | <strong>{{ cpwu }}</strong> <span data-toggle="popover" title="CP-Weighted Usage" data-content="Usage throughout all Top Cut/Day 2 finishes, weighted to that Pokemon’s total CP earnings throughout all Top Cut/Day 2 finishes. For example, if Pikachu had 25% CP-Weighted Usage, that would mean ¼ of the CP earned in Top Cut/Day 2 of 2018 tournaments was earned by Pikachu players.">CP-WU</span></p>
+            <p class="card-text">
+              <strong>{{ cp }}</strong> CP <br>
+              <b-popover title="CP-Weighted Usage" triggers="hover" :placement="'bottom'" :target="'cpwu' + name">
+                Usage throughout all Top Cut/Day 2 finishes, weighted to that Pokemon’s total CP earnings throughout all Top Cut/Day 2 finishes. For example, if Pikachu had 25% CP-Weighted Usage, that would mean ¼ of the CP earned in Top Cut/Day 2 of 2018 tournaments was earned by Pikachu players.
+              </b-popover>
+              <small :id="'cpwu' + name"><strong>{{ cpwu }}</strong> CP-WU</small>
+            </p>
           </div>
         </div>
       </div>
@@ -69,14 +77,9 @@
       </div>
     </footer> -->
 
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.min.js"
-      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-      crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <script type="text/javascript" src="https://github.s3.amazonaws.com/downloads/misoproject/dataset/miso.ds.deps.ie.min.0.3.0.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/miso.dataset@0.4.1/dist/miso.ds.deps.min.0.4.1.js"></script>
     <script src="code.js"></script>
   </body>
 </html>
