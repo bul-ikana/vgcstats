@@ -1,14 +1,3 @@
-// jQuery stuff
-
-$(function () {
-  $('[data-toggle="popover"]').popover({ trigger: "click hover" })
-  $('#submit').click(function () {
-    alert("Register coming soon!");
-  });
-})
-
-// Vue stuff
-
 var pokecard = Vue.component('pokecard', {
   template: '#pokecard',
   props: [
@@ -54,6 +43,10 @@ var vm = new Vue({
             });
           });
         data.loading = false;
+
+        $(function () {
+          $('[data-toggle="popover"]').popover({ trigger: "hover" });
+        });
       },
 
       error : function() {
