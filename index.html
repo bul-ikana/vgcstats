@@ -62,12 +62,12 @@
         <div class="input-group-prepend">
           <span class="input-group-text"><i class="fa fa-search" aria-hidden="true"></i></span>
         </div>
-        <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search bar" v-model="searchTerm">
+        <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search bar" v-model="search">
       </div>
 
       <div class="row">
         <pokecard 
-          v-for="poke in pokemon"
+          v-for="poke in searchPokemon"
           v-bind:name="poke.name"
           v-bind:image="poke.image"
           v-bind:cp="poke.cp"

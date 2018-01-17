@@ -14,7 +14,14 @@ var vm = new Vue({
   data:{
     pokemon: [],
     loading: true,
-    searchTerm: ''
+    search: ''
+  },
+  computed: {
+    searchPokemon() {
+      return this.pokemon.filter(poke => {
+          return poke.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1
+      });
+    }
   },
   mounted() {
     var data = this;
