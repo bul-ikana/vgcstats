@@ -43,10 +43,6 @@ var vm = new Vue({
             });
           });
         data.loading = false;
-
-        $(function () {
-          $('[data-toggle="popover"]').popover({ trigger: "hover" });
-        });
       },
 
       error : function() {
