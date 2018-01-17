@@ -1,14 +1,3 @@
-// jQuery stuff
-
-$(function () {
-  $('[data-toggle="popover"]').popover({ trigger: "click hover" })
-  $('#submit').click(function () {
-    alert("Register coming soon!");
-  });
-})
-
-// Vue stuff
-
 var pokecard = Vue.component('pokecard', {
   template: '#pokecard',
   props: [
@@ -25,6 +14,14 @@ var vm = new Vue({
   data:{
     pokemon: [],
     loading: true,
+    search: ''
+  },
+  computed: {
+    searchPokemon() {
+      return this.pokemon.filter(poke => {
+          return poke.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1
+      });
+    }
   },
   mounted() {
     var data = this;
