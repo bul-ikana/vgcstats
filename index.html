@@ -30,12 +30,17 @@
     <template id ="pokecard">
       <div class="col-md-4 col-lg-3 col-sm-6"> 
         <div class="card text-center my-2">
-          <div class="card-header h5">
+          <div class="card-header h6">
             <span class="badge badge-secondary float-left badge-pill">#{{ rank }}</span>{{ name }}
           </div>
           <div class="div-card-img"><img class="card-img-top px-5 align-middle img-fluid" :src="image" alt="Card image cap"></div>
           <div class="card-body">
-            <p class="card-text"><strong>{{ cp }}</strong> CP | <strong>{{ cpwu }}</strong> <span data-toggle="popover" title="CP-Weighted Usage" data-content="Usage throughout all Top Cut/Day 2 finishes, weighted to that Pokemon’s total CP earnings throughout all Top Cut/Day 2 finishes. For example, if Pikachu had 25% CP-Weighted Usage, that would mean ¼ of the CP earned in Top Cut/Day 2 of 2018 tournaments was earned by Pikachu players.">CP-WU</span></p>
+            <p class="card-text">
+              <strong>{{ cp }}</strong> CP <br>
+              <span data-toggle="popover" title="CP-Weighted Usage" data-content="Usage throughout all Top Cut/Day 2 finishes, weighted to that Pokemon’s total CP earnings throughout all Top Cut/Day 2 finishes. For example, if Pikachu had 25% CP-Weighted Usage, that would mean ¼ of the CP earned in Top Cut/Day 2 of 2018 tournaments was earned by Pikachu players." data-placement="bottom">
+                <small><strong>{{ cpwu }}</strong></small> <small>CP-WU</small>
+              </span>
+            </p>
           </div>
         </div>
       </div>
