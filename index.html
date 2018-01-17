@@ -58,9 +58,16 @@
         <div class="rect5"></div>
       </div>
 
+      <div class="input-group mb-3" v-show="!loading">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="fa fa-search" aria-hidden="true"></i></span>
+        </div>
+        <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search bar" v-model="search">
+      </div>
+
       <div class="row">
         <pokecard 
-          v-for="poke in pokemon"
+          v-for="poke in searchPokemon"
           v-bind:name="poke.name"
           v-bind:image="poke.image"
           v-bind:cp="poke.cp"
@@ -80,6 +87,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/miso.dataset@0.4.1/dist/miso.ds.deps.min.0.4.1.js"></script>
+    <script src="https://use.fontawesome.com/9dccc81e5b.js"></script>
     <script src="code.js"></script>
   </body>
 </html>
