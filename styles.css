@@ -7,7 +7,7 @@
 }
 
 .div-card-img {
-    height: 15rem;
+    height: 10rem;
     position: relative;
 }
 
@@ -33,6 +33,10 @@
 .submit {
     margin-top:7px;
     margin-bottom:7px;
+}
+
+.team-image {
+  max-width:15%;
 }
 
 .spinner {
