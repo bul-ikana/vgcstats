@@ -26,236 +26,41 @@
       </nav>
     </div>
 
-    
+    <template id="eventcard">
+      <div class="col-lg-4 col-md-6">
+        <div class="card my-2">
+          <div class="card-header">
+            <h5 clasS="my-0">{{ event[0].Date }} - {{ event[0].Region }}, {{ event[0].Country }}</h5>
+          </div>
+          <div class="card-body">
+            <div v-for="team in event">
+              <h6>{{ team.Placing}}) {{team.Player}} - </h6>
+              <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/376-m.png">
+              <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/788.png">
+              <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/645-s.png">
+              <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/145.png">
+              <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/591.png">
+              <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/248.png">
+              <br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>    
 
     <div id="app" class="container">
+      <div class="spinner" v-show="loading">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+      </div>
       <div class="row">
-        <div class="col-lg-4 col-md-6">
-            <div class="card">
-              <div class="card-header">
-                <h5>1/1/2018 - California, USA</h5>
-              </div>
-              <div class="card-body">
-                <h6>1) Patrick Smith - </h6>
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/376-m.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/788.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/645-s.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/145.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/591.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/248.png">
-                <br>
-                <h6>2) Patrick Smith -</h6>
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/376-m.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/788.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/645-s.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/145.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/591.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/248.png">
-                <br>
-                <h6>3) Patrick Smith -</h6>
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/376-m.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/788.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/645-s.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/145.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/591.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/248.png">
-                <br>
-                <h6>4) Patrick Smith - </h6>
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/376-m.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/788.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/645-s.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/145.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/591.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/248.png">
-                <br>
-                <h6>5) Patrick Smith - </h6>
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/376-m.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/788.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/645-s.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/145.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/591.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/248.png">
-                <br>
-                <h6>6) Patrick Smith - </h6>
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/376-m.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/788.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/645-s.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/145.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/591.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/248.png">
-                <br>
-                <h6>7) Patrick Smith - </h6>
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/376-m.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/788.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/645-s.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/145.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/591.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/248.png">
-                <br>
-                <h6>8) Patrick Smith - </h6>
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/376-m.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/788.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/645-s.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/145.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/591.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/248.png">
-                <br>
-              </div>
-            </div>
-        </div>
-
-
-
-
-
-        <div class="col-lg-4 col-md-6">
-            <div class="card">
-              <div class="card-header">
-                <h5>1/1/2018 - California, USA</h5>
-              </div>
-              <div class="card-body">
-                <h6>1) Patrick Smith - </h6>
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/376-m.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/788.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/645-s.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/145.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/591.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/248.png">
-                <br>
-                <h6>2) Patrick Smith -</h6>
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/376-m.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/788.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/645-s.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/145.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/591.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/248.png">
-                <br>
-                <h6>3) Patrick Smith -</h6>
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/376-m.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/788.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/645-s.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/145.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/591.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/248.png">
-                <br>
-                <h6>4) Patrick Smith - </h6>
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/376-m.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/788.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/645-s.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/145.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/591.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/248.png">
-                <br>
-                <h6>5) Patrick Smith - </h6>
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/376-m.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/788.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/645-s.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/145.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/591.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/248.png">
-                <br>
-                <h6>6) Patrick Smith - </h6>
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/376-m.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/788.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/645-s.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/145.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/591.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/248.png">
-                <br>
-                <h6>7) Patrick Smith - </h6>
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/376-m.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/788.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/645-s.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/145.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/591.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/248.png">
-                <br>
-                <h6>8) Patrick Smith - </h6>
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/376-m.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/788.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/645-s.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/145.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/591.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/248.png">
-                <br>
-              </div>
-            </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6">
-            <div class="card">
-              <div class="card-header">
-                <h5>1/1/2018 - California, USA</h5>
-              </div>
-              <div class="card-body">
-                <h6>1) Patrick Smith - </h6>
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/376-m.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/788.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/645-s.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/145.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/591.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/248.png">
-                <br>
-                <h6>2) Patrick Smith -</h6>
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/376-m.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/788.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/645-s.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/145.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/591.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/248.png">
-                <br>
-                <h6>3) Patrick Smith -</h6>
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/376-m.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/788.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/645-s.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/145.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/591.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/248.png">
-                <br>
-                <h6>4) Patrick Smith - </h6>
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/376-m.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/788.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/645-s.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/145.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/591.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/248.png">
-                <br>
-                <h6>5) Patrick Smith - </h6>
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/376-m.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/788.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/645-s.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/145.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/591.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/248.png">
-                <br>
-                <h6>6) Patrick Smith - </h6>
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/376-m.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/788.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/645-s.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/145.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/591.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/248.png">
-                <br>
-                <h6>7) Patrick Smith - </h6>
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/376-m.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/788.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/645-s.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/145.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/591.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/248.png">
-                <br>
-                <h6>8) Patrick Smith - </h6>
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/376-m.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/788.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/645-s.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/145.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/591.png">
-                <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/248.png">
-                <br>
-              </div>
-            </div>
-        </div>
-
+        <eventcard
+          v-for="event, key in events"
+          v-bind:event="event"
+        ></eventcard>
       </div>
     </div>
 
@@ -266,31 +71,52 @@
     <script src="http://underscorejs.org/underscore-min.js"></script>
     <!-- <script src="code.js"></script> -->
     <script type="text/javascript">
-      const cpSheet = new Miso.Dataset({
-        importer : Miso.Dataset.Importers.GoogleSpreadsheet,
-        parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
-        key : "1zMGg8sq8ZiVtcEPt9THh2-v315CPH3d3n7vB7a9cbTg",
-        worksheet : "1"
+      const eventcard = Vue.component('eventcard', {
+        template: '#eventcard',
+        props: [
+          'teams',
+          'key',
+          'event'
+        ]
       });
 
-      var data = []; 
-
-      cpSheet.fetch({
-        success : function() {
-          cpSheet.where({
-            rows : function (row) { return row.Placing != null; }
-          }).each( function (row, index) {
-            data.push(row);
-          });
-          console.log(
-            _.groupBy(data, function (row) {return [row.Date, row.Region, row.Country]} )
-          );
+      const vm = new Vue({
+        el: '#app',
+        data: {
+          events: [],
+          loading: true,
         },
+        mounted() {
+          var data = this;
 
-        error : function() {
-          console.log("Are you sure you are connected to the internet?");
+          const cpSheet = new Miso.Dataset({
+            importer : Miso.Dataset.Importers.GoogleSpreadsheet,
+            parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
+            key : "1zMGg8sq8ZiVtcEPt9THh2-v315CPH3d3n7vB7a9cbTg",
+            worksheet : "1"
+          });
+
+          var misodata = []; 
+
+          cpSheet.fetch({
+            success : function() {
+              cpSheet.where({
+                rows : function (row) { return row.Placing != null; }
+              }).each( function (row, index) {
+                misodata.push(row);
+              });
+              data.events = _.groupBy(misodata, function (row) {return [row.Date, row.Region, row.Country]} )
+              data.loading = false;
+
+            },
+
+            error : function() {
+              console.log("Are you sure you are connected to the internet?");
+            }
+          });
         }
       });
+
     </script>
   </body>
 </html>
