@@ -1,13 +1,22 @@
+[v-cloak] {
+     display: none;
+}
+
 .jumbotron {
     padding-top: 2rem;
+    padding-bottom: 1.5rem;
 }
 
 .jumbotron img {
     margin-right: 1rem;
 }
 
+.main-nav .active {
+  font-weight: bold;
+}
+
 .div-card-img {
-    height: 15rem;
+    height: 10rem;
     position: relative;
 }
 
@@ -22,17 +31,29 @@
     width: auto;
 }
 
-.footer {
-  bottom: 0;
-  width: 100%;
-  min-height: 50px;
-  line-height: 50px;
-  background-color: #e9ecef;
-}
-
 .submit {
     margin-top:7px;
     margin-bottom:7px;
+}
+
+.collapsed.card-header .c-up {
+  display: none;
+}
+
+.collapsed.card-header .c-dn {
+  display: inline-block;
+}
+
+.card-header .c-up {
+  display: inline-block;
+}
+
+.card-header .c-dn {
+  display: none;
+}
+
+.team-image {
+  width:15%;
 }
 
 .spinner {
