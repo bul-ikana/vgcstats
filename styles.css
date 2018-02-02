@@ -32,6 +32,22 @@
     margin-bottom:7px;
 }
 
+.collapsed.card-header .c-up {
+  display: none;
+}
+
+.collapsed.card-header .c-dn {
+  display: inline-block;
+}
+
+.card-header .c-up {
+  display: inline-block;
+}
+
+.card-header .c-dn {
+  display: none;
+}
+
 .team-image {
   width:15%;
 }
