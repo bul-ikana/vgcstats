@@ -29,21 +29,24 @@
     <template id="eventcard">
       <div class="col-lg-4 col-md-6">
         <div class="card my-2">
-          <div class="card-header">
+          <div class="card-header" v-b-toggle="'card-' + event[0].Date + event[0].Region + event[0].Country">
             <h5 clasS="my-0">{{ event[0].Date }} - {{ event[0].Region }}, {{ event[0].Country }}</h5>
           </div>
-          <div class="card-body">
-            <div v-for="team in event">
-              <h6>{{ team.Placing}}) {{team.Player}} - </h6>
-              <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/376-m.png">
-              <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/788.png">
-              <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/645-s.png">
-              <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/145.png">
-              <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/591.png">
-              <img class="team-image" src="https://www.serebii.net/sunmoon/pokemon/248.png">
-              <br>
+          <b-collapse :id="'card-' + event[0].Date + event[0].Region + event[0].Country">
+            
+            <div class="card-body">
+              <div v-for="team in event">
+                <h6>{{ team.Placing}}) {{team.Player}}</h6>
+                <img class="team-image py-1" :src="team.Img1">
+                <img class="team-image py-1" :src="team.Img2">
+                <img class="team-image py-1" :src="team.Img3">
+                <img class="team-image py-1" :src="team.Img4">
+                <img class="team-image py-1" :src="team.Img5">
+                <img class="team-image py-1" :src="team.Img6">
+                <br>
+              </div>
             </div>
-          </div>
+          </b-collapse>
         </div>
       </div>
     </template>    
