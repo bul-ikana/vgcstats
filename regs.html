@@ -76,7 +76,6 @@
     <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/miso.dataset@0.4.1/dist/miso.ds.deps.min.0.4.1.js"></script>
     <script src="https://use.fontawesome.com/9dccc81e5b.js"></script>
-    <script src="http://underscorejs.org/underscore-min.js"></script>
     <!-- <script src="code.js"></script> -->
     <script type="text/javascript">
       const eventcard = Vue.component('eventcard', {
@@ -113,9 +112,16 @@
               }).each( function (row, index) {
                 misodata.push(row);
               });
-              data.events = _.groupBy(misodata, function (row) {return [row.Date, row.Region, row.Country]} )
-              data.loading = false;
-
+              data.events = misodata.reduce( 
+                function (r, v, i, a) {
+                  var k1 = v.Date;
+                  var k2 = v.Region; 
+                  var k3 = v.Country;
+                  ( r[k1 + k2 + k3] || (r[k1 + k2 + k3] = []) ).push(v);
+                  return r; 
+                }, {}
+              );
+              data.loading = false
             },
 
             error : function() {
