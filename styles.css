@@ -52,6 +52,15 @@
   display: none;
 }
 
+.btn-video {
+  line-height: 1;
+  padding: 3px 5px;
+  margin-right: 10px;
+  margin-top: -3px;
+  margin-bottom: -2px;
+  border-color: rgba(0,0,0,.20);
+}
+
 .team-image {
   width:15%;
 }
