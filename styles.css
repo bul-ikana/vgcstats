@@ -2,6 +2,12 @@
      display: none;
 }
 
+body {
+  z-index: -3;
+  position: relative;
+  margin-bottom: 50px;
+}
+
 .jumbotron {
     padding-top: 2rem;
     padding-bottom: 1.5rem;
@@ -31,9 +37,18 @@
     width: auto;
 }
 
-.submit {
-    margin-top:7px;
-    margin-bottom:7px;
+.container {
+  z-index: -2;
+  position: relative;
+}
+
+.fixed-bottom {
+  z-index: -1;
+}
+
+.submit-bar {
+  display: block;
+  background-color: #e9ecef;
 }
 
 .collapsed.card-header .c-up {
