@@ -14,7 +14,8 @@ var vm = new Vue({
   data:{
     pokemon: [],
     loading: true,
-    search: ''
+    search: '',
+    alert: window.location.hash == '#sent'
   },
   computed: {
     searchPokemon() {
