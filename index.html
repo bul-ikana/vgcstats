@@ -58,6 +58,16 @@
     </template>
 
     <div id="app" class="container">
+
+      <b-alert 
+        show
+        dismissible
+        variant="success"
+        v-if="alert"
+        v-cloak>
+          Playlist submitted. Thank you!
+      </b-alert>
+
       <div class="spinner" v-show="loading">
         <div class="rect1"></div>
         <div class="rect2"></div>
@@ -84,7 +94,7 @@
         ></pokecard>
       </div> 
     </div>
-
+    
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/miso.dataset@0.4.1/dist/miso.ds.deps.min.0.4.1.js"></script>

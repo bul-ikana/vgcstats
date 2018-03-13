@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112526902-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-112526902-1');
+    </script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>
+    <link rel="stylesheet" href="styles.css" >
+    <link rel="icon" type="image/png" href="https://www.serebii.net/shuffle/pokemon/576.png">
+
+    <title>VGCStats</title>
+  </head>
+  <body>
+    
+    <div class="jumbotron">
+      <img src="https://www.serebii.net/art/th/576.png" class="float-left">
+      <h1 class="display-4">VGCStats</h1>
+      <p class="lead">Aiming to record every Midseason Showdown, Regional, and National VGC tournament for further analysis. By <a href="https://twitter.com/profshroomish">@profshroomish</a></p> 
+
+      <nav class="nav nav-fill main-nav">
+        <a class="text-muted nav-item nav-link" href="index.html">Stats</a>
+        <a class="text-muted nav-item nav-link" href="mss.html">MSS</a>
+        <a class="text-muted nav-item nav-link" href="regs.html">Regs</a>
+        <a class="text-muted nav-item nav-link" href="nats.html">Nats</a>
+        <a class="text-info  nav-item nav-link" href="https://ko-fi.com/vgcstats">Buy us a coffee!</a>
+      </nav>
+    </div> 
+
+    <div id="app" class="container">
+      <h3>Submit a playlist!</h3>
+      <small>If you are a TO or a caster and you want to add the a playlist with VODs from your event to the site please write to us and we will add it as soon as we can.</small>
+      <hr>
+      <form action="https://formcarry.com/s/r1hYPGmKf" method="POST" accept-charset="UTF-8" >
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" class="form-control" required>
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="playlist">Playlist</label>
+          <input type="text" name="playlist" id="playlist" class="form-control" required>
+          <small id="emailHelp" class="form-text text-muted">The link to the playlist.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="event">Event</label>
+          <input type="text" name="event" id="event" class="form-control" required>
+          <small id="emailHelp" class="form-text text-muted">Please tell us for which event you are submitting the playlist.</small>
+        </div>
+
+        <input type="hidden" name="_gotcha">
+
+        <div class="g-recaptcha" data-sitekey="6LdJB0wUAAAAAM3OYBMsSLXIVfxyhJExRAT4udvl"></div>
+        <br>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/miso.dataset@0.4.1/dist/miso.ds.deps.min.0.4.1.js"></script>
+    <script src="https://use.fontawesome.com/9dccc81e5b.js"></script>
+    <script src="code.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+  </body>
+</html>
