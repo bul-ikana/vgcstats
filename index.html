@@ -21,10 +21,49 @@
 
     <title>VGCStats</title>
   </head>
+
+  <!-- Pokemon stat card -->
+  <template id ="pokecard">
+    <div class="col-md-4 col-lg-3 col-sm-6"> 
+      <div class="card text-center my-2">
+        <div class="card-header h6">
+          <span class="badge badge-secondary float-left badge-pill">#{{ rank }}</span>{{ name }}
+        </div>
+        <div class="div-card-img"><img class="card-img-top px-5 align-middle img-fluid" :src="image" alt="Card image cap"></div>
+        <div class="card-body">
+          <p class="card-text">
+            <strong>{{ cp }}</strong> CP <br>
+            <b-popover title="CP-Weighted Usage" triggers="hover" :placement="'bottom'" :target="'cpwu' + name">
+              Usage throughout all Top Cut/Day 2 finishes, weighted to that Pokemon’s total CP earnings throughout all Top Cut/Day 2 finishes. For example, if Pikachu had 25% CP-Weighted Usage, that would mean ¼ of the CP earned in Top Cut/Day 2 of 2018 tournaments was earned by Pikachu players.
+            </b-popover>
+            <small :id="'cpwu' + name"><strong>{{ cpwu }}</strong> CP-WU</small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="statspage">
+    <h1>STATS!</h1>
+  </template>
+
+  <template id="msspage">
+    <h1>MSS!</h1>
+  </template>
+
+  <template id="regpage">
+    <h1>Regs!</h1>
+  </template>
+
+  <template id="natpage">
+    <h1>Internats!</h1>
+  </template>
+
+  
   <body>
     
     <div class="jumbotron">
-      <img src="roar.png" class="float-left">
+      <img src="https://www.serebii.net/art/th/576.png" class="float-left">
       <h1 class="display-4">VGCStats</h1>
       <p class="lead">Aiming to record every Midseason Showdown, Regional, and National VGC tournament for further analysis. By <a href="https://twitter.com/profshroomish">@profshroomish</a></p> 
 
@@ -37,28 +76,18 @@
       </nav>
     </div>
 
-    <template id ="pokecard">
-      <div class="col-md-4 col-lg-3 col-sm-6"> 
-        <div class="card text-center my-2">
-          <div class="card-header h6">
-            <span class="badge badge-secondary float-left badge-pill">#{{ rank }}</span>{{ name }}
-          </div>
-          <div class="div-card-img"><img class="card-img-top px-5 align-middle img-fluid" :src="image" alt="Card image cap"></div>
-          <div class="card-body">
-            <p class="card-text">
-              <strong>{{ cp }}</strong> CP <br>
-              <b-popover title="CP-Weighted Usage" triggers="hover" :placement="'bottom'" :target="'cpwu' + name">
-                Usage throughout all Top Cut/Day 2 finishes, weighted to that Pokemon’s total CP earnings throughout all Top Cut/Day 2 finishes. For example, if Pikachu had 25% CP-Weighted Usage, that would mean ¼ of the CP earned in Top Cut/Day 2 of 2018 tournaments was earned by Pikachu players.
-              </b-popover>
-              <small :id="'cpwu' + name"><strong>{{ cpwu }}</strong> CP-WU</small>
-            </p>
-          </div>
-        </div>
-      </div>
-    </template>
+    
 
     <div id="app" class="container">
-
+      <p>Current route name: {{ $route.name }}</p>
+      <p>
+          <router-link to="/">Stats</router-link>
+          <router-link to="/mss">MSS</router-link>
+          <router-link to="/regs">Regs</router-link>
+          <router-link to="/nats">Nats</router-link>
+      </p>
+      <router-view></router-view>
+      
       <b-alert 
         show
         dismissible
@@ -96,9 +125,12 @@
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <!-- <script src="https://unpkg.com/vue/dist/vue.js"></script> -->
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
     <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/miso.dataset@0.4.1/dist/miso.ds.deps.min.0.4.1.js"></script>
     <script src="https://use.fontawesome.com/9dccc81e5b.js"></script>
     <script src="code.js"></script>
   </body>
 </html>
+

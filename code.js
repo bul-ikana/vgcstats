@@ -1,4 +1,50 @@
-var pokecard = Vue.component('pokecard', {
+const statspage = Vue.component('statspage', {
+  template: '#statspage'
+});
+
+const msspage = Vue.component('msspage', {
+  template: '#msspage'
+});
+
+const natpage = Vue.component('natpage', {
+  template: '#natpage'
+});
+
+const regpage = Vue.component('regpage', {
+  template: '#regpage'
+});
+
+
+const router = new VueRouter ({
+  routes: [
+    {
+      path: '/',
+      name: 'Stats',
+      component: statspage
+    },
+    {
+      path: '/mss',
+      name: 'MSS',
+      component: msspage
+    },
+    {
+      path: '/regs',
+      name: 'Regs',
+      component: regpage
+    },
+    {
+      path: '/nats',
+      name: 'Nats',
+      component: natpage
+    },
+    {
+      path: '*',
+      redirect: '/'
+    }
+  ]
+});
+
+const pokecard = Vue.component('pokecard', {
   template: '#pokecard',
   props: [
     'name',
@@ -9,8 +55,10 @@ var pokecard = Vue.component('pokecard', {
   ]
 });
 
+
 var vm = new Vue({
   el: '#app',
+  router: router,
   data:{
     pokemon: [],
     loading: true,
