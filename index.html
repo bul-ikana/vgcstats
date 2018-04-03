@@ -44,7 +44,36 @@
   </template>
 
   <template id="statspage">
-    <h1>STATS!</h1>
+    <div class="container">
+
+      <b-alert 
+        show
+        dismissible
+        variant="success"
+        v-if="alert" 
+        v-cloak>
+          Playlist submitted. Thank you!
+      </b-alert>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="fa fa-search" aria-hidden="true"></i></span>
+        </div>
+        <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search bar" >
+      </div>
+      
+      <div class="row">
+        <pokecard 
+          v-for="poke in searchPokemon"
+          :name="poke.name"
+          :image="poke.image"
+          :cp="poke.cp"
+          :cpwu="poke.cpwu"
+          :rank="poke.rank"
+        ></pokecard>
+      </div> 
+    </div>
+
   </template>
 
   <template id="msspage">
@@ -76,27 +105,7 @@
       </nav>
     </div>
 
-    
-
-    <div id="app" class="container">
-      <p>Current route name: {{ $route.name }}</p>
-      <p>
-          <router-link to="/">Stats</router-link>
-          <router-link to="/mss">MSS</router-link>
-          <router-link to="/regs">Regs</router-link>
-          <router-link to="/nats">Nats</router-link>
-      </p>
-      <router-view></router-view>
-      
-      <b-alert 
-        show
-        dismissible
-        variant="success"
-        v-if="alert"
-        v-cloak>
-          Playlist submitted. Thank you!
-      </b-alert>
-
+    <div id="app">
       <div class="spinner" v-show="loading">
         <div class="rect1"></div>
         <div class="rect2"></div>
@@ -105,27 +114,20 @@
         <div class="rect5"></div>
       </div>
 
-      <div class="input-group mb-3" v-show="!loading" v-cloak>
-        <div class="input-group-prepend">
-          <span class="input-group-text"><i class="fa fa-search" aria-hidden="true"></i></span>
-        </div>
-        <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search bar" v-model="search">
-      </div>
-
-      <div class="row">
-        <pokecard 
-          v-for="poke in searchPokemon"
-          v-bind:name="poke.name"
-          v-bind:image="poke.image"
-          v-bind:cp="poke.cp"
-          v-bind:cpwu="poke.cpwu"
-          v-bind:rank="poke.rank"
-        ></pokecard>
-      </div> 
+      <p>Current route name: {{ $route.name }}</p>
+      <p>
+          <router-link to="/">Stats</router-link>
+          <router-link to="/mss">MSS</router-link>
+          <router-link to="/regs">Regs</router-link>
+          <router-link to="/nats">Nats</router-link>
+      </p>
+      <keep-alive> 
+        <router-view></router-view>
+      </keep-alive>
     </div>
     
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <!-- <script src="https://unpkg.com/vue/dist/vue.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
     <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/miso.dataset@0.4.1/dist/miso.ds.deps.min.0.4.1.js"></script>

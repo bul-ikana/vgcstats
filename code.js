@@ -1,69 +1,11 @@
 const statspage = Vue.component('statspage', {
-  template: '#statspage'
-});
-
-const msspage = Vue.component('msspage', {
-  template: '#msspage'
-});
-
-const natpage = Vue.component('natpage', {
-  template: '#natpage'
-});
-
-const regpage = Vue.component('regpage', {
-  template: '#regpage'
-});
-
-
-const router = new VueRouter ({
-  routes: [
-    {
-      path: '/',
-      name: 'Stats',
-      component: statspage
-    },
-    {
-      path: '/mss',
-      name: 'MSS',
-      component: msspage
-    },
-    {
-      path: '/regs',
-      name: 'Regs',
-      component: regpage
-    },
-    {
-      path: '/nats',
-      name: 'Nats',
-      component: natpage
-    },
-    {
-      path: '*',
-      redirect: '/'
+  template: '#statspage',
+  data () {
+    return {
+      'pokemon': [],
+      search: '',
+      alert: window.location.hash == '#sent'
     }
-  ]
-});
-
-const pokecard = Vue.component('pokecard', {
-  template: '#pokecard',
-  props: [
-    'name',
-    'image',
-    'cp',
-    'cpwu',
-    'rank',
-  ]
-});
-
-
-var vm = new Vue({
-  el: '#app',
-  router: router,
-  data:{
-    pokemon: [],
-    loading: true,
-    search: '',
-    alert: window.location.hash == '#sent'
   },
   computed: {
     searchPokemon() {
@@ -106,5 +48,69 @@ var vm = new Vue({
         console.log("Are you sure you are connected to the internet?");
       }
     });
+  }
+});
+
+const msspage = Vue.component('msspage', {
+  template: '#msspage'
+});
+
+const natpage = Vue.component('natpage', {
+  template: '#natpage'
+});
+
+const regpage = Vue.component('regpage', {
+  template: '#regpage'
+});
+
+
+const router = new VueRouter ({
+  routes: [
+    {
+      path: '/',
+      name: 'Stats',
+      component: statspage,
+    },
+    {
+      path: '/mss',
+      name: 'MSS',
+      component: msspage
+    },
+    {
+      path: '/regs',
+      name: 'Regs',
+      component: regpage
+    },
+    {
+      path: '/nats',
+      name: 'Nats',
+      component: natpage
+    },
+    {
+      path: '*',
+      redirect: '/'
+    }
+  ]
+});
+
+const pokecard = Vue.component('pokecard', {
+  template: '#pokecard',
+  props: [
+    'name',
+    'image',
+    'cp',
+    'cpwu',
+    'rank',
+  ]
+});
+
+
+var vm = new Vue({
+  el: '#app',
+  router: router,
+  data() {
+    return {
+      loading: true,
+    }
   }
 });
