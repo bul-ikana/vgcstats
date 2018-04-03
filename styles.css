@@ -17,7 +17,7 @@ body {
     margin-right: 1rem;
 }
 
-.main-nav .active {
+.main-nav .router-link-active {
   font-weight: bold;
 }
 
