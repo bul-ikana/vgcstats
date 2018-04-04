@@ -3,12 +3,13 @@
 }
 
 body {
-  z-index: -3;
   position: relative;
   margin-bottom: 50px;
 }
 
 .jumbotron {
+    position: relative;
+    z-index: 2;
     padding-top: 2rem;
     padding-bottom: 1.5rem;
 }
@@ -17,7 +18,7 @@ body {
     margin-right: 1rem;
 }
 
-.main-nav .active {
+.main-nav .router-link-active {
   font-weight: bold;
 }
 
@@ -37,13 +38,8 @@ body {
     width: auto;
 }
 
-.container {
-  z-index: -2;
-  position: relative;
-}
-
 .fixed-bottom {
-  z-index: -1;
+  z-index: 1;
 }
 
 .submit-bar {
