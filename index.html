@@ -125,12 +125,39 @@
     </div>
   </template>
 
+  <!-- Regs page -->
   <template id="regpage">
-    <h1>Regs!</h1>
+    <div>
+      <div class="container">
+        <div class="row">
+          <eventcard
+            v-for="event, key in events"
+            v-bind:event="event"
+          ></eventcard>
+        </div>
+      </div>
+
+      <nav class="navbar navbar-dark submit-bar fixed-bottom" style="width: 100%;">
+        <a href="submit.html" class="btn btn-success float-right">Submit a playlist</a>
+      </nav>
+    </div>
   </template>
 
   <template id="natpage">
-    <h1>Internats!</h1>
+    <div>
+      <div class="container">
+        <div class="row">
+          <eventcard
+            v-for="event, key in events"
+            v-bind:event="event"
+          ></eventcard>
+        </div>
+      </div>
+
+      <nav class="navbar navbar-dark submit-bar fixed-bottom" style="width: 100%;">
+        <a href="submit.html" class="btn btn-success float-right">Submit a playlist</a>
+      </nav>
+    </div>
   </template>
   
   <body>

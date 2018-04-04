@@ -2,6 +2,8 @@
 // Component definition //
 //                      //
 
+// Elements
+
 const pokecard = Vue.component('pokecard', {
   template: '#pokecard',
   props: [
@@ -21,6 +23,8 @@ const eventcard = Vue.component('eventcard', {
     'event'
   ]
 });
+
+// Pages
 
 const statspage = Vue.component('statspage', {
 
@@ -126,14 +130,103 @@ const msspage = Vue.component('msspage', {
   }
 });
 
-const natpage = Vue.component('natpage', {
-  template: '#natpage'
-});
-
 const regpage = Vue.component('regpage', {
-  template: '#regpage'
+  template: '#regpage',
+
+  data () {
+    return {
+      events: []
+    }
+  },
+
+  mounted () {
+    var data = this;
+
+    const cpSheet = new Miso.Dataset({
+      importer : Miso.Dataset.Importers.GoogleSpreadsheet,
+      parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
+      key : "1WUNrJWrsAK_7EEIn2L0QyMC2SArXqGIOpJ4G1XrlU20",
+      worksheet : "3"
+    });
+
+    var misodata = []; 
+
+    cpSheet.fetch({
+      success : function() {
+        cpSheet.where({
+          rows : function (row) { return row.Placing != null; }
+        }).each( function (row, index) {
+          misodata.push(row);
+        });
+        data.events = misodata.reduce( 
+          function (r, v, i, a) {
+            var k1 = v.Date;
+            var k2 = v.Region; 
+            var k3 = v.Country;
+            ( r[k1 + k2 + k3] || (r[k1 + k2 + k3] = []) ).push(v);
+            return r; 
+          }, {}
+        );
+        data.loading = false;
+      },
+
+      error : function() {
+        console.log("Are you sure you are connected to the internet?");
+      }
+    });
+  }
 });
 
+const natpage = Vue.component('natpage', {
+  template: '#natpage',
+
+  data () {
+    return {
+      events: []
+    }
+  },
+
+  mounted () {
+    var data = this;
+
+    const cpSheet = new Miso.Dataset({
+      importer : Miso.Dataset.Importers.GoogleSpreadsheet,
+      parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
+      key : "1WUNrJWrsAK_7EEIn2L0QyMC2SArXqGIOpJ4G1XrlU20",
+      worksheet : "4"
+    });
+
+    var misodata = []; 
+
+    cpSheet.fetch({
+      success : function() {
+        cpSheet.where({
+          rows : function (row) { return row.Placing != null; }
+        }).each( function (row, index) {
+          misodata.push(row);
+        });
+        data.events = misodata.reduce( 
+          function (r, v, i, a) {
+            var k1 = v.Date;
+            var k2 = v.Region; 
+            var k3 = v.Country;
+            ( r[k1 + k2 + k3] || (r[k1 + k2 + k3] = []) ).push(v);
+            return r; 
+          }, {}
+        );
+        data.loading = false;
+      },
+
+      error : function() {
+        console.log("Are you sure you are connected to the internet?");
+      }
+    });
+  }
+});
+
+//                   //
+// Router definition //
+//                   //
 
 const router = new VueRouter ({
   routes: [
@@ -164,6 +257,9 @@ const router = new VueRouter ({
   ]
 });
 
+//                //
+// Vue definition //
+//                //
 
 var vm = new Vue({
   el: '#app',
