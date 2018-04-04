@@ -1,5 +1,31 @@
+//                      //
+// Component definition //
+//                      //
+
+const pokecard = Vue.component('pokecard', {
+  template: '#pokecard',
+  props: [
+    'name',
+    'image',
+    'cp',
+    'cpwu',
+    'rank',
+  ]
+});
+
+const eventcard = Vue.component('eventcard', {
+  template: '#eventcard',
+  props: [
+    'teams',
+    'key',
+    'event'
+  ]
+});
+
 const statspage = Vue.component('statspage', {
+
   template: '#statspage',
+
   data () {
     return {
       'pokemon': [],
@@ -7,6 +33,7 @@ const statspage = Vue.component('statspage', {
       alert: window.location.hash == '#sent'
     }
   },
+
   computed: {
     searchPokemon() {
       return this.pokemon.filter(poke => {
@@ -14,6 +41,7 @@ const statspage = Vue.component('statspage', {
       });
     }
   },
+
   mounted() {
     var data = this;
 
@@ -52,7 +80,50 @@ const statspage = Vue.component('statspage', {
 });
 
 const msspage = Vue.component('msspage', {
-  template: '#msspage'
+  template: '#msspage',
+
+  data () {
+    return {
+      events: []
+    }
+  },
+
+  mounted () {
+    var data = this;
+
+    const cpSheet = new Miso.Dataset({
+      importer : Miso.Dataset.Importers.GoogleSpreadsheet,
+      parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
+      key : "1WUNrJWrsAK_7EEIn2L0QyMC2SArXqGIOpJ4G1XrlU20",
+      worksheet : "2"
+    });
+
+    var misodata = []; 
+
+    cpSheet.fetch({
+      success : function() {
+        cpSheet.where({
+          rows : function (row) { return row.Placing != null; }
+        }).each( function (row, index) {
+          misodata.push(row);
+        });
+        data.events = misodata.reduce( 
+          function (r, v, i, a) {
+            var k1 = v.Date;
+            var k2 = v.Region; 
+            var k3 = v.Country;
+            ( r[k1 + k2 + k3] || (r[k1 + k2 + k3] = []) ).push(v);
+            return r; 
+          }, {}
+        );
+        data.loading = false;
+      },
+
+      error : function() {
+        console.log("Are you sure you are connected to the internet?");
+      }
+    });
+  }
 });
 
 const natpage = Vue.component('natpage', {
@@ -90,17 +161,6 @@ const router = new VueRouter ({
       path: '*',
       redirect: '/'
     }
-  ]
-});
-
-const pokecard = Vue.component('pokecard', {
-  template: '#pokecard',
-  props: [
-    'name',
-    'image',
-    'cp',
-    'cpwu',
-    'rank',
   ]
 });
 
