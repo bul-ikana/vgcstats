@@ -8,6 +8,10 @@ const spinnercomp = Vue.component('spinnercomp', {
     template: '#spinnercomp'
 });
 
+const footercomp = Vue.component('footercomp', {
+  template: '#footercomp'
+});
+
 const pokecard = Vue.component('pokecard', {
   template: '#pokecard',
   props: [
