@@ -22,6 +22,17 @@
     <title>VGCStats</title>
   </head>
 
+  <!-- Spinner -->
+  <template id="spinnercomp">
+    <div class="spinner">
+      <div class="rect1"></div>
+      <div class="rect2"></div>
+      <div class="rect3"></div>
+      <div class="rect4"></div>
+      <div class="rect5"></div>
+    </div>
+  </template>
+
   <!-- Pokemon stat card -->
   <template id ="pokecard">
     <div class="col-md-4 col-lg-3 col-sm-6"> 
@@ -78,6 +89,7 @@
   <!-- Stats page -->
   <template id="statspage">
     <div class="container">
+      <spinnercomp v-if="loading"></spinnercomp>
       <b-alert 
         show
         dismissible
@@ -87,7 +99,7 @@
           Playlist submitted. Thank you!
       </b-alert>
 
-      <div class="input-group mb-3">
+      <div class="input-group mb-3" v-show="!loading">
         <div class="input-group-prepend">
           <span class="input-group-text"><i class="fa fa-search" aria-hidden="true"></i></span>
         </div>
@@ -111,6 +123,7 @@
   <template id="msspage">
     <div>
       <div class="container">
+        <spinnercomp v-if="loading"></spinnercomp>
         <div class="row">
           <eventcard
             v-for="event, key in events"
@@ -129,6 +142,7 @@
   <template id="regpage">
     <div>
       <div class="container">
+        <spinnercomp v-if="loading"></spinnercomp>
         <div class="row">
           <eventcard
             v-for="event, key in events"
@@ -146,6 +160,7 @@
   <template id="natpage">
     <div>
       <div class="container">
+        <spinnercomp v-if="loading"></spinnercomp>
         <div class="row">
           <eventcard
             v-for="event, key in events"
@@ -174,14 +189,6 @@
           <router-link class="text-muted nav-item nav-link" to="/nats">Nats</router-link>
           <a class="text-info nav-item nav-link" href="https://ko-fi.com/vgcstats">Buy us a coffee!</a>
         </nav>
-      </div>
-
-      <div class="spinner" v-show="loading">
-        <div class="rect1"></div>
-        <div class="rect2"></div>
-        <div class="rect3"></div>
-        <div class="rect4"></div>
-        <div class="rect5"></div>
       </div>
 
       <keep-alive> 

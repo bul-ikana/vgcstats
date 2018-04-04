@@ -4,6 +4,10 @@
 
 // Elements
 
+const spinnercomp = Vue.component('spinnercomp', {
+    template: '#spinnercomp'
+});
+
 const pokecard = Vue.component('pokecard', {
   template: '#pokecard',
   props: [
@@ -32,8 +36,9 @@ const statspage = Vue.component('statspage', {
 
   data () {
     return {
-      'pokemon': [],
+      pokemon: [],
       search: '',
+      loading: true,
       alert: window.location.hash == '#sent'
     }
   },
@@ -88,7 +93,8 @@ const msspage = Vue.component('msspage', {
 
   data () {
     return {
-      events: []
+      events: [],
+      loading: true
     }
   },
 
@@ -135,7 +141,8 @@ const regpage = Vue.component('regpage', {
 
   data () {
     return {
-      events: []
+      events: [],
+      loading: true
     }
   },
 
@@ -182,7 +189,8 @@ const natpage = Vue.component('natpage', {
 
   data () {
     return {
-      events: []
+      events: [],
+      loading: true
     }
   },
 
