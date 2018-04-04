@@ -77,7 +77,7 @@
           
         <b-collapse :id="'card-' + event[0].Date + event[0].Region + event[0].Country">
           <div class="card-body">
-            <div v-for="team in event">
+            <div v-for="team in event" :key="event._id">
               <h6>{{ team.Placing}}) {{team.Player}}</h6>
               <img class="team-image py-1" :src="team.Img1">
               <img class="team-image py-1" :src="team.Img2">
@@ -121,6 +121,7 @@
           :cp="poke.cp"
           :cpwu="poke.cpwu"
           :rank="poke.rank"
+          :key="poke.name"
         ></pokecard>
       </div> 
     </div>
@@ -133,8 +134,9 @@
         <spinnercomp v-if="loading"></spinnercomp>
         <div class="row">
           <eventcard
-            v-for="event, key in events"
-            v-bind:event="event"
+            v-for="(event, key) in events"
+            :event="event"
+            :key="key"
           ></eventcard>
         </div>
       </div>
@@ -149,8 +151,9 @@
         <spinnercomp v-if="loading"></spinnercomp>
         <div class="row">
           <eventcard
-            v-for="event, key in events"
-            v-bind:event="event"
+            v-for="(event, key) in events"
+            :event="event"
+            :key="key"
           ></eventcard>
         </div>
       </div>
@@ -165,8 +168,9 @@
         <spinnercomp v-if="loading"></spinnercomp>
         <div class="row">
           <eventcard
-            v-for="event, key in events"
-            v-bind:event="event"
+            v-for="(event, key) in events"
+            :event="event"
+            :key="key"
           ></eventcard>
         </div>
       </div>

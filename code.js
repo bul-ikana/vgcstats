@@ -26,8 +26,6 @@ const pokecard = Vue.component('pokecard', {
 const eventcard = Vue.component('eventcard', {
   template: '#eventcard',
   props: [
-    'teams',
-    'key',
     'event'
   ]
 });
