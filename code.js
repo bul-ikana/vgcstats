@@ -116,7 +116,11 @@ const msspage = Vue.component('msspage', {
       success : function() {
         cpSheet.where({
           rows : function (row) { return row.Placing != null; }
-        }).each( function (row, index) {
+        }).sort(
+          function (a, b) {
+            return new Date(b.Date) - new Date(a.Date) || a.Placing - b.Placing;
+          }
+        ).each( function (row, index) {
           misodata.push(row);
         });
         data.events = misodata.reduce( 
@@ -164,7 +168,11 @@ const regpage = Vue.component('regpage', {
       success : function() {
         cpSheet.where({
           rows : function (row) { return row.Placing != null; }
-        }).each( function (row, index) {
+        }).sort(
+          function (a, b) {
+            return new Date(b.Date) - new Date(a.Date) || a.Placing - b.Placing;
+          }
+        ).each( function (row, index) {
           misodata.push(row);
         });
         data.events = misodata.reduce( 
@@ -212,7 +220,11 @@ const natpage = Vue.component('natpage', {
       success : function() {
         cpSheet.where({
           rows : function (row) { return row.Placing != null; }
-        }).each( function (row, index) {
+        }).sort(
+          function (a, b) {
+            return new Date(b.Date) - new Date(a.Date) || a.Placing - b.Placing;
+          }
+        ).each( function (row, index) {
           misodata.push(row);
         });
         data.events = misodata.reduce( 
