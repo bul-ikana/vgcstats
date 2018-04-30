@@ -14,13 +14,14 @@ const footercomp = Vue.component('footercomp', {
 
 const pokecard = Vue.component('pokecard', {
   template: '#pokecard',
+  
   props: [
     'name',
     'image',
     'cp',
     'cpwu',
     'rank',
-  ]
+  ],
 });
 
 const eventcard = Vue.component('eventcard', {
@@ -47,8 +48,28 @@ const statspage = Vue.component('statspage', {
 
   computed: {
     searchPokemon() {
-      return this.pokemon.filter(poke => {
+      return this.pokemon
+      .reduce( function (r, v, i, a) {
+        let el = r.find((r) => r && r.name === v['name']);
+
+        if (el) {
+          el.cp += v['cp'];
+        } else {
+          r.push({
+            name: v['name'],
+            image: v['image'],
+            values: [v],
+            cp: v['cp']
+          })
+        }
+
+        return r;
+      }, [])
+      .filter(poke => {
           return poke.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1
+      })
+      .sort(function (a, b) {
+        return b.cp - a.cp;
       });
     }
   },
@@ -60,24 +81,24 @@ const statspage = Vue.component('statspage', {
       importer : Miso.Dataset.Importers.GoogleSpreadsheet,
       parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
       key : "1WUNrJWrsAK_7EEIn2L0QyMC2SArXqGIOpJ4G1XrlU20",
-      worksheet : "12"
+      worksheet : "19"
+      // worksheet : "12"
     });
+
+    var misodata = [];
 
     cpSheet.fetch({
       success : function() {
         cpSheet
-          .where({
-            rows: function(row) {
-              return row.TotalCP > 0;
-            }
-          })
           .each(function (row, rowIndex) {
             data.pokemon.push({
-              name: row.Pokemon, 
+              name: row.Name, 
               image: row.Image, 
-              cp: row.TotalCP, 
-              rank: row.Rank,
-              cpwu: row.CPusage, 
+              cp: row.CP, 
+              rank: 1,
+              cpwu: row.Date, 
+              // rank: row.Rank,
+              // cpwu: row.CPusage, 
             });
           });
         data.loading = false;
