@@ -118,7 +118,7 @@ const msspage = Vue.component('msspage', {
           rows : function (row) { return row.Placing != null; }
         }).sort(
           function (a, b) {
-            return new Date(b.Date) - new Date(a.Date) || a.Placing - b.Placing;
+            return new Date(b.Date) - new Date(a.Date) || a.Standing - b.Standing;
           }
         ).each( function (row, index) {
           misodata.push(row);
@@ -170,7 +170,7 @@ const regpage = Vue.component('regpage', {
           rows : function (row) { return row.Placing != null; }
         }).sort(
           function (a, b) {
-            return new Date(b.Date) - new Date(a.Date) || a.Placing - b.Placing;
+            return new Date(b.Date) - new Date(a.Date) || a.Standing - b.Standing;
           }
         ).each( function (row, index) {
           misodata.push(row);
@@ -222,7 +222,7 @@ const natpage = Vue.component('natpage', {
           rows : function (row) { return row.Placing != null; }
         }).sort(
           function (a, b) {
-            return new Date(b.Date) - new Date(a.Date) || a.Placing - b.Placing;
+            return new Date(b.Date) - new Date(a.Date) || a.Standing - b.Standing;
           }
         ).each( function (row, index) {
           misodata.push(row);
