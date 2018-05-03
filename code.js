@@ -2,16 +2,19 @@
 // Component definition //
 //                      //
 
-// Elements
+// Elements //
 
+// Spinner
 const spinnercomp = Vue.component('spinnercomp', {
     template: '#spinnercomp'
 });
 
+// Footer
 const footercomp = Vue.component('footercomp', {
   template: '#footercomp'
 });
 
+// Pokemon card
 const pokecard = Vue.component('pokecard', {
   template: '#pokecard',
   
@@ -32,6 +35,7 @@ const pokecard = Vue.component('pokecard', {
   }
 });
 
+// Event card
 const eventcard = Vue.component('eventcard', {
   template: '#eventcard',
   props: [
@@ -39,8 +43,9 @@ const eventcard = Vue.component('eventcard', {
   ]
 });
 
-// Pages
+// Pages //
 
+// Stats page
 const statspage = Vue.component('statspage', {
 
   template: '#statspage',
@@ -58,27 +63,27 @@ const statspage = Vue.component('statspage', {
 
     searchPokemon() {
       return this.pokemon
-      .reduce( function (r, v, i, a) {
-        let el = r.find((r) => r && r.name === v['Name']);
+        .reduce( function (r, v, i, a) {
 
-        if (el) {
-          el.cp += v['CP'];
-        } else {
-          r.push({
-            name: v['Name'],
-            image: v['Image'],
-            cp: v['CP'],
-          })
-        }
+          let el = r.find((r) => r && r.name === v['Name']);
+          if (el) {
+            el.cp += v['CP'];
+          } else {
+            r.push({
+              name: v['Name'],
+              image: v['Image'],
+              cp: v['CP'],
+            })
+          }
+          return r;
 
-        return r;
-      }, [])
-      .filter(poke => {
-          return poke.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1
-      })
-      .sort(function (a, b) {
-        return b.cp - a.cp;
-      });
+        }, [])
+        .filter(poke => {
+            return poke.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1
+        })
+        .sort(function (a, b) {
+          return b.cp - a.cp;
+        });
     },
 
     totalCP () {
@@ -116,6 +121,7 @@ const statspage = Vue.component('statspage', {
   }
 });
 
+// MSS page
 const msspage = Vue.component('msspage', {
   template: '#msspage',
 
@@ -168,6 +174,7 @@ const msspage = Vue.component('msspage', {
   }
 });
 
+// Regs page
 const regpage = Vue.component('regpage', {
   template: '#regpage',
 
@@ -220,6 +227,7 @@ const regpage = Vue.component('regpage', {
   }
 });
 
+// Nats page
 const natpage = Vue.component('natpage', {
   template: '#natpage',
 
