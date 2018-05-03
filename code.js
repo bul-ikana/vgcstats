@@ -19,9 +19,17 @@ const pokecard = Vue.component('pokecard', {
     'name',
     'image',
     'cp',
-    'cpwu',
     'rank',
+    'tcp'
   ],
+
+  computed: {
+    cpwu () {
+      return this.tcp
+        ? (this.cp * 6 / this.tcp * 100).toFixed(2) + "%"
+        : 0;
+    }
+  }
 });
 
 const eventcard = Vue.component('eventcard', {
@@ -47,6 +55,7 @@ const statspage = Vue.component('statspage', {
   },
 
   computed: {
+
     searchPokemon() {
       return this.pokemon
       .reduce( function (r, v, i, a) {
@@ -58,8 +67,7 @@ const statspage = Vue.component('statspage', {
           r.push({
             name: v['name'],
             image: v['image'],
-            values: [v],
-            cp: v['cp']
+            cp: v['cp'],
           })
         }
 
@@ -71,7 +79,15 @@ const statspage = Vue.component('statspage', {
       .sort(function (a, b) {
         return b.cp - a.cp;
       });
-    }
+    },
+
+    totalCP () {
+      return this.searchPokemon ? 
+        this.searchPokemon.reduce( function (r, v) {
+          return r + v.cp;
+        }, 0)
+        : 0;
+    },
   },
 
   mounted() {
@@ -95,7 +111,6 @@ const statspage = Vue.component('statspage', {
               name: row.Name, 
               image: row.Image, 
               cp: row.CP, 
-              rank: 1,
               cpwu: row.Date, 
               // rank: row.Rank,
               // cpwu: row.CPusage, 

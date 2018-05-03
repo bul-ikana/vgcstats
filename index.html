@@ -115,11 +115,11 @@
       
       <div class="row">
         <pokecard 
+          :tcp="totalCP"
           v-for="poke in searchPokemon"
           :name="poke.name"
           :image="poke.image"
           :cp="poke.cp"
-          :cpwu="poke.cpwu"
           :rank="poke.rank"
           :key="poke.name"
         ></pokecard>
