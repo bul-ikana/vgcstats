@@ -59,15 +59,15 @@ const statspage = Vue.component('statspage', {
     searchPokemon() {
       return this.pokemon
       .reduce( function (r, v, i, a) {
-        let el = r.find((r) => r && r.name === v['name']);
+        let el = r.find((r) => r && r.name === v['Name']);
 
         if (el) {
-          el.cp += v['cp'];
+          el.cp += v['CP'];
         } else {
           r.push({
-            name: v['name'],
-            image: v['image'],
-            cp: v['cp'],
+            name: v['Name'],
+            image: v['Image'],
+            cp: v['CP'],
           })
         }
 
@@ -105,17 +105,7 @@ const statspage = Vue.component('statspage', {
 
     cpSheet.fetch({
       success : function() {
-        cpSheet
-          .each(function (row, rowIndex) {
-            data.pokemon.push({
-              name: row.Name, 
-              image: row.Image, 
-              cp: row.CP, 
-              cpwu: row.Date, 
-              // rank: row.Rank,
-              // cpwu: row.CPusage, 
-            });
-          });
+        data.pokemon = cpSheet.toJSON();
         data.loading = false;
       },
 
