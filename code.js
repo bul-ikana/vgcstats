@@ -55,7 +55,9 @@ const statspage = Vue.component('statspage', {
       pokemon: [],
       search: '',
       loading: true,
-      alert: window.location.hash == '#sent'
+      alert: window.location.hash == '#sent',
+      begindate: "2018-01-01",
+      enddate: "2018-12-31",
     }
   },
 
@@ -63,6 +65,10 @@ const statspage = Vue.component('statspage', {
 
     searchPokemon() {
       return this.pokemon
+        .filter(poke => {
+            let pokedate = new Date(poke.Date);
+            return pokedate >= new Date(this.begindate) && pokedate <= new Date(this.enddate);
+        })
         .reduce( function (r, v, i, a) {
 
           let el = r.find((r) => r && r.name === v['Name']);
@@ -78,11 +84,17 @@ const statspage = Vue.component('statspage', {
           return r;
 
         }, [])
-        .filter(poke => {
-            return poke.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1
-        })
         .sort(function (a, b) {
           return b.cp - a.cp;
+        });
+    },
+
+    filtermon() {
+      return this.pokemon
+        .filter(poke => {
+            // return poke.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1
+            let pokedate = new Date(poke.Date);
+            return pokedate >= this.begindate && pokedate <= this.enddate;
         });
     },
 

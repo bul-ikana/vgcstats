@@ -106,11 +106,24 @@
           Playlist submitted. Thank you!
       </b-alert>
 
-      <div class="input-group mb-3" v-show="!loading">
-        <div class="input-group-prepend">
-          <span class="input-group-text"><i class="fa fa-search" aria-hidden="true"></i></span>
+      <div v-show="!loading">
+        <div class="input-group mb-1">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-search" aria-hidden="true"></i></span>
+          </div>
+          <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search bar" v-model="search">
         </div>
-        <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search bar" v-model="search">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+          </div>
+          <input type="date" value="begindate" class="form-control" placeholder="Begin" name="bdate" v-model="begindate" style="max-height: 38px;">
+
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+          </div>
+          <input type="date" value="enddate" class="form-control" name="edate" v-model="enddate" style="max-height: 38px;">
+        </div>
       </div>
       
       <div class="row">
