@@ -76,6 +76,12 @@ body {
   width:15%;
 }
 
+input[type="date"] {
+  max-height: 38px;
+}
+
+/* Spinner */
+
 .spinner {
   margin: 100px auto;
   width: 50px;
