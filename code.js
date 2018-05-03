@@ -89,15 +89,6 @@ const statspage = Vue.component('statspage', {
         });
     },
 
-    filtermon() {
-      return this.pokemon
-        .filter(poke => {
-            // return poke.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1
-            let pokedate = new Date(poke.Date);
-            return pokedate >= this.begindate && pokedate <= this.enddate;
-        });
-    },
-
     totalCP () {
       return this.searchPokemon ? 
         this.searchPokemon.reduce( function (r, v) {
