@@ -72,6 +72,15 @@ body {
   border-color: rgba(0,0,0,.20);
 }
 
+label.btn-outline-secondary:not([disabled]):not(.disabled).active {
+  box-shadow: none;
+  background-color: #e9ecef;
+}
+
+#date-buttons label {
+  border: 1px solid #ced4da;
+}
+
 .team-image {
   width:15%;
 }

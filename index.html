@@ -113,12 +113,24 @@
           </div>
           <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search bar" v-model="search">
         </div>
-        <div class="input-group mb-3">
+
+        <div class="btn-group btn-group-toggle mb-1 d-flex" role="group" data-toggle="buttons" id="date-buttons">
+          <label class="btn w-100 btn-outline-secondary" :class="{ active: dateyear }">
+            <input @click="setdateyear" type="radio" name="options" id="option1" autocomplete="off" checked> 2018
+          </label>
+          <label class="btn w-100 btn-outline-secondary" :class="{ active: dateintimiroar }">
+            <input @click="setdateintimiroar" type="radio" name="options" id="option2" autocomplete="off"> Post Incineroar 
+          </label>
+          <label class="btn w-100 btn-outline-secondary" :class="{ active: datecustom }">
+            <input @click="setdatecustom" type="radio" name="options" id="option3" autocomplete="off"> Custom
+          </label>
+        </div>
+
+        <div class="input-group mb-3" v-show="datecustom">
           <div class="input-group-prepend">
             <span class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></span>
           </div>
           <input type="date" value="begindate" class="form-control mr-1" placeholder="Begin" name="bdate" v-model="begindate">
-
           <div class="input-group-prepend" class="ml-1">
             <span class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></span>
           </div>
