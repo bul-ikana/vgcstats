@@ -86,7 +86,18 @@ const statspage = Vue.component('statspage', {
         }, [])
         .sort(function (a, b) {
           return b.cp - a.cp;
-        });
+        })
+        .map( function (v, i, a) {
+          rank = i +  1;
+          while (i !== 0 && v.cp === a[i - 1].cp) {
+            console.log(v.name, a[i - 1].name);
+            rank--;
+            i--;
+          }
+          v['rank'] = rank;
+          return v;
+        })
+        ;
     },
 
     totalCP () {
