@@ -42,7 +42,7 @@
 
   <!-- Pokemon stat card -->
   <template id ="pokecard">
-    <div class="col-md-4 col-lg-3 col-sm-6"> 
+    <div class="col-md-4 col-lg-3 col-sm-6" :class="{ hidden : hidden }"> 
       <div class="card text-center my-2">
         <div class="card-header h6">
           <span class="badge badge-secondary float-left badge-pill">#{{ rank }}</span>{{ name }}
@@ -141,6 +141,7 @@
       <div class="row">
         <pokecard 
           :tcp="totalCP"
+          :search="search"
           v-for="poke in searchPokemon"
           :name="poke.name"
           :image="poke.image"

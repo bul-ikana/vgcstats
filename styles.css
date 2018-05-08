@@ -85,6 +85,10 @@ label.btn-outline-secondary:not([disabled]):not(.disabled).active {
   width:15%;
 }
 
+.hidden {
+  display: none;
+}
+
 input[type="date"] {
   max-height: 38px;
 }

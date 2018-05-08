@@ -23,7 +23,8 @@ const pokecard = Vue.component('pokecard', {
     'image',
     'cp',
     'rank',
-    'tcp'
+    'tcp',
+    'search'
   ],
 
   computed: {
@@ -31,7 +32,14 @@ const pokecard = Vue.component('pokecard', {
       return this.tcp
         ? (this.cp * 6 / this.tcp * 100).toFixed(2) + "%"
         : 0;
+    },
+
+    hidden () {
+      return this.name 
+        ? this.name.toLowerCase().indexOf(this.search.toLowerCase()) === -1
+        : false;
     }
+
   }
 });
 
@@ -90,7 +98,6 @@ const statspage = Vue.component('statspage', {
         .map( function (v, i, a) {
           rank = i +  1;
           while (i !== 0 && v.cp === a[i - 1].cp) {
-            console.log(v.name, a[i - 1].name);
             rank--;
             i--;
           }
