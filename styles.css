@@ -79,6 +79,9 @@ label.btn-outline-secondary:not([disabled]):not(.disabled).active {
 
 #date-buttons label {
   border: 1px solid #ced4da;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .team-image {
