@@ -119,12 +119,16 @@ const statspage = Vue.component('statspage', {
         return this.begindate === "2018-01-01" && this.enddate === "2018-12-31";
     },
 
+    datepreintimiroar () {
+      return this.begindate === "2018-01-01" && this.enddate === "2018-03-07";
+    },
+
     dateintimiroar () {
       return this.begindate === "2018-03-08" && this.enddate === "2018-12-31";
     },
 
     datecustom () {
-      return !this.dateyear && !this.dateintimiroar;
+      return !this.dateyear && !this.dateintimiroar && !this.datepreintimiroar;
     }
   },
 
@@ -132,6 +136,11 @@ const statspage = Vue.component('statspage', {
     setdateyear: function () {
       this.begindate = "2018-01-01";
       this.enddate = "2018-12-31";
+    },
+
+    setdatepreintimiroar: function () {
+      this.begindate = "2018-01-01";
+      this.enddate = "2018-03-07";
     },
 
     setdateintimiroar: function () {
