@@ -72,9 +72,31 @@ body {
   border-color: rgba(0,0,0,.20);
 }
 
+label.btn-outline-secondary:not([disabled]):not(.disabled).active {
+  box-shadow: none;
+  background-color: #e9ecef;
+}
+
+#date-buttons label {
+  border: 1px solid #ced4da;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .team-image {
   width:15%;
 }
+
+.hidden {
+  display: none;
+}
+
+input[type="date"] {
+  max-height: 38px;
+}
+
+/* Spinner */
 
 .spinner {
   margin: 100px auto;
