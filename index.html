@@ -156,8 +156,8 @@
     </div>
   </template>
 
-  <!-- MSS page -->
-  <template id="msspage">
+  <!-- teams page -->
+  <template id="teamspage">
     <div>
       <div class="container">
         <spinnercomp v-if="loading"></spinnercomp>
@@ -169,41 +169,6 @@
           ></eventcard>
         </div>
       </div>
-      <footercomp></footercomp>
-    </div>
-  </template>
-
-  <!-- Regs page -->
-  <template id="regpage">
-    <div>
-      <div class="container">
-        <spinnercomp v-if="loading"></spinnercomp>
-        <div class="row">
-          <eventcard
-            v-for="(event, key) in events"
-            :event="event"
-            :key="key"
-          ></eventcard>
-        </div>
-      </div>
-      <footercomp></footercomp>
-    </div>
-  </template>
-
-  <!-- Nats page -->
-  <template id="natpage">
-    <div>
-      <div class="container">
-        <spinnercomp v-if="loading"></spinnercomp>
-        <div class="row">
-          <eventcard
-            v-for="(event, key) in events"
-            :event="event"
-            :key="key"
-          ></eventcard>
-        </div>
-      </div>
-
       <footercomp></footercomp>
     </div>
   </template>
@@ -213,14 +178,13 @@
     <div id="app">
       <div class="jumbotron">
         <img src="https://www.serebii.net/art/th/576.png" class="float-left">
-        <h1 class="display-4">VGCStats</h1>
-        <p class="lead">Aiming to record every Midseason Showdown, Regional, and National VGC tournament for further analysis. By <a href="https://twitter.com/profshroomish">@profshroomish</a></p> 
+        <h1 class="display-4">VGCStats - Worlds 2018</h1>
+        <p class="lead">A record of  By <a href="https://twitter.com/profshroomish">@profshroomish</a></p> 
 
         <nav class="nav nav-fill main-nav">
-          <router-link class="text-muted nav-item nav-link" to="/" exact>Stats</router-link>
-          <router-link class="text-muted nav-item nav-link" to="/mss">MSS</router-link>
-          <router-link class="text-muted nav-item nav-link" to="/regs">Regs</router-link>
-          <router-link class="text-muted nav-item nav-link" to="/nats">Nats</router-link>
+          <a class="text-muted nav-item nav-link" href="https://vgcstats.com" exact>VGCStats</a>
+          <router-link class="text-muted nav-item nav-link" to="/" exact>Pokémon</router-link>
+          <router-link class="text-muted nav-item nav-link" to="/teams">Teams</router-link>
           <a class="text-info nav-item nav-link" href="https://ko-fi.com/vgcstats">Buy us a coffee!</a>
         </nav>
       </div>

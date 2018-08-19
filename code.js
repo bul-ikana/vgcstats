@@ -161,7 +161,7 @@ const statspage = Vue.component('statspage', {
     var cpSheet = new Miso.Dataset({
       importer : Miso.Dataset.Importers.GoogleSpreadsheet,
       parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
-      key : "1WUNrJWrsAK_7EEIn2L0QyMC2SArXqGIOpJ4G1XrlU20",
+      key : "10N_ttYQ66UfsKrIDckxk93g9FXjBDQe9kd4GfhLiUCo",
       worksheet : "19"
       // worksheet : "12"
     });
@@ -182,8 +182,8 @@ const statspage = Vue.component('statspage', {
 });
 
 // MSS page
-const msspage = Vue.component('msspage', {
-  template: '#msspage',
+const teamspage = Vue.component('teamspage', {
+  template: '#teamspage',
 
   data () {
     return {
@@ -198,7 +198,7 @@ const msspage = Vue.component('msspage', {
     const cpSheet = new Miso.Dataset({
       importer : Miso.Dataset.Importers.GoogleSpreadsheet,
       parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
-      key : "1WUNrJWrsAK_7EEIn2L0QyMC2SArXqGIOpJ4G1XrlU20",
+      key : "10N_ttYQ66UfsKrIDckxk93g9FXjBDQe9kd4GfhLiUCo",
       worksheet : "2"
     });
 
@@ -235,110 +235,7 @@ const msspage = Vue.component('msspage', {
 });
 
 // Regs page
-const regpage = Vue.component('regpage', {
-  template: '#regpage',
 
-  data () {
-    return {
-      events: [],
-      loading: true
-    }
-  },
-
-  mounted () {
-    var data = this;
-
-    const cpSheet = new Miso.Dataset({
-      importer : Miso.Dataset.Importers.GoogleSpreadsheet,
-      parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
-      key : "1WUNrJWrsAK_7EEIn2L0QyMC2SArXqGIOpJ4G1XrlU20",
-      worksheet : "3"
-    });
-
-    var misodata = []; 
-
-    cpSheet.fetch({
-      success : function() {
-        cpSheet.where({
-          rows : function (row) { return row.Placing != null; }
-        }).sort(
-          function (a, b) {
-            return new Date(b.Date) - new Date(a.Date) || a.Standing - b.Standing;
-          }
-        ).each( function (row, index) {
-          misodata.push(row);
-        });
-        data.events = misodata.reduce( 
-          function (r, v, i, a) {
-            var k1 = v.Date;
-            var k2 = v.Region; 
-            var k3 = v.Country;
-            ( r[k1 + k2 + k3] || (r[k1 + k2 + k3] = []) ).push(v);
-            return r; 
-          }, {}
-        );
-        data.loading = false;
-      },
-
-      error : function() {
-        console.log("Are you sure you are connected to the internet?");
-      }
-    });
-  }
-});
-
-// Nats page
-const natpage = Vue.component('natpage', {
-  template: '#natpage',
-
-  data () {
-    return {
-      events: [],
-      loading: true
-    }
-  },
-
-  mounted () {
-    var data = this;
-
-    const cpSheet = new Miso.Dataset({
-      importer : Miso.Dataset.Importers.GoogleSpreadsheet,
-      parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
-      key : "1WUNrJWrsAK_7EEIn2L0QyMC2SArXqGIOpJ4G1XrlU20",
-      worksheet : "4"
-    });
-
-    var misodata = []; 
-
-    cpSheet.fetch({
-      success : function() {
-        cpSheet.where({
-          rows : function (row) { return row.Placing != null; }
-        }).sort(
-          function (a, b) {
-            return new Date(b.Date) - new Date(a.Date) || a.Standing - b.Standing;
-          }
-        ).each( function (row, index) {
-          misodata.push(row);
-        });
-        data.events = misodata.reduce( 
-          function (r, v, i, a) {
-            var k1 = v.Date;
-            var k2 = v.Region; 
-            var k3 = v.Country;
-            ( r[k1 + k2 + k3] || (r[k1 + k2 + k3] = []) ).push(v);
-            return r; 
-          }, {}
-        );
-        data.loading = false;
-      },
-
-      error : function() {
-        console.log("Are you sure you are connected to the internet?");
-      }
-    });
-  }
-});
 
 //                   //
 // Router definition //
@@ -348,23 +245,13 @@ const router = new VueRouter ({
   routes: [
     {
       path: '/',
-      name: 'Stats',
+      name: 'Pokémon',
       component: statspage,
     },
     {
-      path: '/mss',
-      name: 'MSS',
-      component: msspage
-    },
-    {
-      path: '/regs',
-      name: 'Regs',
-      component: regpage
-    },
-    {
-      path: '/nats',
-      name: 'Nats',
-      component: natpage
+      path: '/teams',
+      name: 'Teams',
+      component: teamspage
     },
     {
       path: '*',
