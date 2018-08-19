@@ -54,7 +54,7 @@
             <b-popover title="CP-Weighted Usage" triggers="hover" :placement="'bottom'" :target="'cpwu' + name">
               Usage throughout all Top Cut/Day 2 finishes, weighted to that Pokemon’s total CP earnings throughout all Top Cut/Day 2 finishes. For example, if Pikachu had 25% CP-Weighted Usage, that would mean ¼ of the CP earned in Top Cut/Day 2 of 2018 tournaments was earned by Pikachu players.
             </b-popover>
-            <small :id="'cpwu' + name"><strong>{{ cpwu }}</strong> CP-WU</small>
+            <small :id="'cpwu' + name"><strong>{{ cpu }}</strong> CP-WU</small>
           </p>
         </div>
       </div>
@@ -117,7 +117,7 @@
       
       <div class="row">
         <pokecard 
-          :tcp="totalCP"
+          :cpu="poke.cpu"
           :search="search"
           v-for="poke in searchPokemon"
           :name="poke.name"

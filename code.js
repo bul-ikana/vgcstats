@@ -23,17 +23,11 @@ const pokecard = Vue.component('pokecard', {
     'image',
     'cp',
     'rank',
-    'tcp',
+    'cpu',
     'search'
   ],
 
   computed: {
-    cpwu () {
-      return this.tcp
-        ? (this.cp * 6 / this.tcp * 100).toFixed(2) + "%"
-        : 0;
-    },
-
     hidden () {
       return this.name 
         ? this.name.toLowerCase().indexOf(this.search.toLowerCase()) === -1
@@ -64,55 +58,21 @@ const statspage = Vue.component('statspage', {
       search: '',
       loading: true,
       alert: window.location.hash == '#sent',
-      begindate: "2018-01-01",
-      enddate: "2018-12-31",
     }
   },
 
   computed: {
 
     searchPokemon() {
+      console.log(this.pokemon);
       return this.pokemon
-        .filter(poke => {
-            let pokedate = new Date(poke.Date);
-            return pokedate >= new Date(this.begindate) && pokedate <= new Date(this.enddate);
+        .filter(function (p) {
+          return p.cp > 0
         })
-        .reduce( function (r, v, i, a) {
-
-          let el = r.find((r) => r && r.name === v['Name']);
-          if (el) {
-            el.cp += v['CP'];
-          } else {
-            r.push({
-              name: v['Name'],
-              image: v['Image'],
-              cp: v['CP'],
-            })
-          }
-          return r;
-
-        }, [])
         .sort(function (a, b) {
           return b.cp - a.cp;
         })
-        .map( function (v, i, a) {
-          rank = i +  1;
-          while (i !== 0 && v.cp === a[i - 1].cp) {
-            rank--;
-            i--;
-          }
-          v['rank'] = rank;
-          return v;
-        })
         ;
-    },
-
-    totalCP () {
-      return this.searchPokemon ? 
-        this.searchPokemon.reduce( function (r, v) {
-          return r + v.cp;
-        }, 0)
-        : 0;
     },
   },
 
@@ -123,7 +83,7 @@ const statspage = Vue.component('statspage', {
       importer : Miso.Dataset.Importers.GoogleSpreadsheet,
       parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
       key : "10N_ttYQ66UfsKrIDckxk93g9FXjBDQe9kd4GfhLiUCo",
-      worksheet : "19"
+      worksheet : "6"
       // worksheet : "12"
     });
 
