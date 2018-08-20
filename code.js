@@ -102,7 +102,7 @@ const statspage = Vue.component('statspage', {
   }
 });
 
-// MSS page
+// Teams page
 const teamspage = Vue.component('teamspage', {
   template: '#teamspage',
 
@@ -129,11 +129,7 @@ const teamspage = Vue.component('teamspage', {
       success : function() {
         cpSheet.where({
           rows : function (row) { return row.Placing != null; }
-        }).sort(
-          function (a, b) {
-            return new Date(b.Date) - new Date(a.Date) || a.Standing - b.Standing;
-          }
-        ).each( function (row, index) {
+        }).each( function (row, index) {
           misodata.push(row);
         });
         data.events = misodata.reduce( 

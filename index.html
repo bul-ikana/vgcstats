@@ -33,13 +33,6 @@
     </div>
   </template>
 
-  <!-- Footer bar -->
-  <template id="footercomp">
-    <nav class="navbar navbar-dark submit-bar fixed-bottom" style="width: 100%;">
-      <a href="submit.html" class="btn btn-success float-right">Submit a playlist</a>
-    </nav>
-  </template>
-
   <!-- Pokemon stat card -->
   <template id ="pokecard">
     <div class="col-md-4 col-lg-3 col-sm-6" :class="{ hidden : hidden }"> 
@@ -50,11 +43,11 @@
         <div class="div-card-img"><img class="card-img-top px-5 align-middle img-fluid" :src="image" alt="Card image cap"></div>
         <div class="card-body">
           <p class="card-text">
-            <strong>{{ cp }}</strong> CP <br>
+            <strong>{{ cp }}</strong> WP <br>
             <b-popover title="CP-Weighted Usage" triggers="hover" :placement="'bottom'" :target="'cpwu' + name">
-              Usage throughout all Top Cut/Day 2 finishes, weighted to that Pokemon’s total CP earnings throughout all Top Cut/Day 2 finishes. For example, if Pikachu had 25% CP-Weighted Usage, that would mean ¼ of the CP earned in Top Cut/Day 2 of 2018 tournaments was earned by Pikachu players.
+              Usage throughout all Top Cut/Day 2 finishes, weighted to that Pokemon’s total WP earnings throughout all Top Cut/Day 2 finishes. For example, if Pikachu had 25% WP-Weighted Usage, that would mean ¼ of the WP earned in Top Cut/Day 2 of 2018 tournaments was earned by Pikachu players.
             </b-popover>
-            <small :id="'cpwu' + name"><strong>{{ cpu }}</strong> CP-WU</small>
+            <small :id="'cpwu' + name"><strong>{{ cpu }}</strong> WP-WU</small>
           </p>
         </div>
       </div>
@@ -63,33 +56,19 @@
 
   <!-- Event teams card -->
   <template id="eventcard">
-    <div class="col-lg-4 col-md-6">
-      <div class="card my-2">
-        <div class="card-header" v-b-toggle="'card-' + event[0].Date + event[0].Region + event[0].Country">
-          <h6 clasS="my-0">{{ event[0].Date }} - {{ event[0].Region }}, {{ event[0].Country }}
-          <i class="c-up fa fa-caret-up float-right" aria-hidden="true"></i>
-          <i class="c-dn fa fa-caret-down float-right" aria-hidden="true"></i>
-          <a class="btn btn-outline-secondary btn-video float-right" v-show="event[0].Playlist" :href="event[0].Playlist" target="_blank">
-            <i class="fa fa-youtube-play text-danger" aria-hidden="true"> </i>
-          </a>
-          </h6>
-        </div>
-          
-        <b-collapse :id="'card-' + event[0].Date + event[0].Region + event[0].Country">
-          <div class="card-body">
-            <div v-for="team in event" :key="event._id">
-              <h6>{{ team.Placing}}) {{team.Player}}</h6>
-              <img class="team-image py-1" :src="team.Img1">
-              <img class="team-image py-1" :src="team.Img2">
-              <img class="team-image py-1" :src="team.Img3">
-              <img class="team-image py-1" :src="team.Img4">
-              <img class="team-image py-1" :src="team.Img5">
-              <img class="team-image py-1" :src="team.Img6">
-              <br>
-            </div>
+    <div>        
+        <div v-for="team in event" :key="event._id">
+          <h5>{{ team.Placing}}) {{team.Player}}</h5>
+          <div class="row">
+            <div class="col-lg-2 col-md-4 col-sm-6"><img class="team-image py-1" :src="team.Img1"></div>
+            <div class="col-lg-2 col-md-4 col-sm-6"><img class="team-image py-1" :src="team.Img2"></div>
+            <div class="col-lg-2 col-md-4 col-sm-6"><img class="team-image py-1" :src="team.Img3"></div>
+            <div class="col-lg-2 col-md-4 col-sm-6"><img class="team-image py-1" :src="team.Img4"></div>
+            <div class="col-lg-2 col-md-4 col-sm-6"><img class="team-image py-1" :src="team.Img5"></div>
+            <div class="col-lg-2 col-md-4 col-sm-6"><img class="team-image py-1" :src="team.Img6"></div>
           </div>
-        </b-collapse>
-      </div>
+          <hr>
+        </div>
     </div>
   </template> 
   
@@ -97,14 +76,6 @@
   <template id="statspage">
     <div class="container">
       <spinnercomp v-if="loading"></spinnercomp>
-      <b-alert 
-        show
-        dismissible
-        variant="success"
-        v-if="alert" 
-        v-cloak>
-          Playlist submitted. Thank you!
-      </b-alert>
 
       <div v-show="!loading">
         <div class="input-group mb-1">
@@ -135,15 +106,12 @@
     <div>
       <div class="container">
         <spinnercomp v-if="loading"></spinnercomp>
-        <div class="row">
           <eventcard
             v-for="(event, key) in events"
             :event="event"
             :key="key"
           ></eventcard>
-        </div>
       </div>
-      <footercomp></footercomp>
     </div>
   </template>
   
@@ -153,12 +121,12 @@
       <div class="jumbotron">
         <img src="https://www.serebii.net/art/th/576.png" class="float-left">
         <h1 class="display-4">VGCStats - Worlds 2018</h1>
-        <p class="lead">A record of  By <a href="https://twitter.com/profshroomish">@profshroomish</a></p> 
+        <p class="lead">A record of teams in the Pokémon World Championships 2018. By <a href="https://twitter.com/profshroomish">@profshroomish</a></p> 
 
         <nav class="nav nav-fill main-nav">
-          <a class="text-muted nav-item nav-link" href="https://vgcstats.com" exact>VGCStats</a>
           <router-link class="text-muted nav-item nav-link" to="/" exact>Pokémon</router-link>
           <router-link class="text-muted nav-item nav-link" to="/teams">Teams</router-link>
+          <a class="text-muted nav-item nav-link" href="https://vgcstats.com" exact>VGCStats</a>
           <a class="text-info nav-item nav-link" href="https://ko-fi.com/vgcstats">Buy us a coffee!</a>
         </nav>
       </div>

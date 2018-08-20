@@ -85,7 +85,10 @@ label.btn-outline-secondary:not([disabled]):not(.disabled).active {
 }
 
 .team-image {
-  width:15%;
+  max-width:100%;
+  max-height:95%;
+  margin: auto;
+  display: block;
 }
 
 .hidden {
