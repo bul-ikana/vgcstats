@@ -64,7 +64,6 @@ const statspage = Vue.component('statspage', {
   computed: {
 
     searchPokemon() {
-      console.log(this.pokemon);
       return this.pokemon
         .filter(function (p) {
           return p.cp > 0
@@ -109,8 +108,25 @@ const teamspage = Vue.component('teamspage', {
   data () {
     return {
       events: [],
-      loading: true
+      loading: true,
+      search: ''
     }
+  },
+
+  computed: {
+    searchPokemon() {
+      search = this.search
+      return this.events
+        .filter(function (p) {
+          return p.Pokemon1.toLowerCase().indexOf(search.toLowerCase()) !== -1 ||
+                 p.Pokemon2.toLowerCase().indexOf(search.toLowerCase()) !== -1 ||
+                 p.Pokemon3.toLowerCase().indexOf(search.toLowerCase()) !== -1 ||
+                 p.Pokemon4.toLowerCase().indexOf(search.toLowerCase()) !== -1 ||
+                 p.Pokemon5.toLowerCase().indexOf(search.toLowerCase()) !== -1 ||
+                 p.Pokemon6.toLowerCase().indexOf(search.toLowerCase()) !== -1 
+        })
+        ;
+    },
   },
 
   mounted () {
@@ -132,15 +148,7 @@ const teamspage = Vue.component('teamspage', {
         }).each( function (row, index) {
           misodata.push(row);
         });
-        data.events = misodata.reduce( 
-          function (r, v, i, a) {
-            var k1 = v.Date;
-            var k2 = v.Region; 
-            var k3 = v.Country;
-            ( r[k1 + k2 + k3] || (r[k1 + k2 + k3] = []) ).push(v);
-            return r; 
-          }, {}
-        );
+        data.events = misodata;
         data.loading = false;
       },
 
@@ -150,9 +158,6 @@ const teamspage = Vue.component('teamspage', {
     });
   }
 });
-
-// Regs page
-
 
 //                   //
 // Router definition //

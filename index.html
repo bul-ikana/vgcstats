@@ -106,11 +106,17 @@
     <div>
       <div class="container">
         <spinnercomp v-if="loading"></spinnercomp>
-          <eventcard
-            v-for="(event, key) in events"
-            :event="event"
-            :key="key"
-          ></eventcard>
+
+        <div v-show="!loading">
+          <div class="input-group mb-1">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-search" aria-hidden="true"></i></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search bar" v-model="search">
+          </div>
+        </div> <br>
+
+        <eventcard :event="searchPokemon"></eventcard>
       </div>
     </div>
   </template>
