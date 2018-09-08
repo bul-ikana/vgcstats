@@ -1,3 +1,12 @@
+//                         //
+// Basic app configuration //
+//                         //
+
+//https://sheets.googleapis.com/v4/spreadsheets/1z28nMvWohrDjOQ4WiGkmLBUVgC1XeQA4caS6L8jLsn4/values/CP-TOTAL!A1:E20000?key=AIzaSyC3FsbFxets0WTIJXOYC88vqQb-Bc6mZKg
+const SHEET_ID = "1z28nMvWohrDjOQ4WiGkmLBUVgC1XeQA4caS6L8jLsn4";
+const API_KEY = "AIzaSyC3FsbFxets0WTIJXOYC88vqQb-Bc6mZKg";
+const API_URL = "https://sheets.googleapis.com/v4/spreadsheets/" + SHEET_ID + "/values/CP-TOTAL!B1:E20000?dateTimeRenderOption=FORMATTED_STRING&valueRenderOption=UNFORMATTED_VALUE&key=" + API_KEY;
+
 //                      //
 // Component definition //
 //                      //
@@ -156,29 +165,24 @@ const statspage = Vue.component('statspage', {
 
 
   mounted() {
-    var data = this;
-
-    var cpSheet = new Miso.Dataset({
-      importer : Miso.Dataset.Importers.GoogleSpreadsheet,
-      parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
-      key : "1WUNrJWrsAK_7EEIn2L0QyMC2SArXqGIOpJ4G1XrlU20",
-      worksheet : "19"
-      // worksheet : "12"
-    });
-
-    var misodata = [];
-
-    cpSheet.fetch({
-      success : function() {
-        data.pokemon = cpSheet.toJSON();
+    axios
+      .get(API_URL)
+      .then(response => {
+        var data = this;
+        data.pokemon = response.data.values.map( function (current, index, array) {
+          poke = {}
+          if (index !== 0) {
+            poke[array[0][0]] = current[0]
+            poke[array[0][1]] = current[1]
+            poke[array[0][2]] = current[2]
+            poke[array[0][3]] = current[3]
+          }
+          return poke
+        });
         data.loading = false;
-      },
-
-      error : function() {
-        console.log("Are you sure you are connected to the internet?");
-      }
-    });
+      })
   }
+
 });
 
 // MSS page
@@ -198,8 +202,8 @@ const msspage = Vue.component('msspage', {
     const cpSheet = new Miso.Dataset({
       importer : Miso.Dataset.Importers.GoogleSpreadsheet,
       parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
-      key : "1WUNrJWrsAK_7EEIn2L0QyMC2SArXqGIOpJ4G1XrlU20",
-      worksheet : "2"
+      key : "1z28nMvWohrDjOQ4WiGkmLBUVgC1XeQA4caS6L8jLsn4",
+      worksheet : "1"
     });
 
     var misodata = []; 
@@ -251,8 +255,8 @@ const regpage = Vue.component('regpage', {
     const cpSheet = new Miso.Dataset({
       importer : Miso.Dataset.Importers.GoogleSpreadsheet,
       parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
-      key : "1WUNrJWrsAK_7EEIn2L0QyMC2SArXqGIOpJ4G1XrlU20",
-      worksheet : "3"
+      key : "1z28nMvWohrDjOQ4WiGkmLBUVgC1XeQA4caS6L8jLsn4",
+      worksheet : "2"
     });
 
     var misodata = []; 
@@ -304,8 +308,8 @@ const natpage = Vue.component('natpage', {
     const cpSheet = new Miso.Dataset({
       importer : Miso.Dataset.Importers.GoogleSpreadsheet,
       parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
-      key : "1WUNrJWrsAK_7EEIn2L0QyMC2SArXqGIOpJ4G1XrlU20",
-      worksheet : "4"
+      key : "1z28nMvWohrDjOQ4WiGkmLBUVgC1XeQA4caS6L8jLsn4",
+      worksheet : "3"
     });
 
     var misodata = []; 
