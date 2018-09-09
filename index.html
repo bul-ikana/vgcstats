@@ -65,19 +65,19 @@
   <template id="eventcard">
     <div class="col-lg-4 col-md-6">
       <div class="card my-2">
-        <div class="card-header" v-b-toggle="'card-' + event[0].Date + event[0].Region + event[0].Country">
-          <h6 clasS="my-0">{{ event[0].Date }} - {{ event[0].Region }}, {{ event[0].Country }}
+        <div class="card-header" v-b-toggle="'card-' + event.Date + event.Region + event.Country">
+          <h6 clasS="my-0">{{ event.Date }} - {{ event.Region }}, {{ event.Country }}
           <i class="c-up fa fa-caret-up float-right" aria-hidden="true"></i>
           <i class="c-dn fa fa-caret-down float-right" aria-hidden="true"></i>
-          <a class="btn btn-outline-secondary btn-video float-right" v-show="event[0].Playlist" :href="event[0].Playlist" target="_blank">
+          <a class="btn btn-outline-secondary btn-video float-right" v-show="event.Playlist" :href="event.Playlist" target="_blank">
             <i class="fa fa-youtube-play text-danger" aria-hidden="true"> </i>
           </a>
           </h6>
         </div>
           
-        <b-collapse :id="'card-' + event[0].Date + event[0].Region + event[0].Country">
+        <b-collapse :id="'card-' + event.Date + event.Region + event.Country">
           <div class="card-body">
-            <div v-for="team in event" :key="event._id">
+            <div v-for="team in event.teams" :key="event._id">
               <h6>{{ team.Placing}}) {{team.Player}}</h6>
               <img class="team-image py-1" :src="team.Img1">
               <img class="team-image py-1" :src="team.Img2">
@@ -156,8 +156,8 @@
     </div>
   </template>
 
-  <!-- MSS page -->
-  <template id="msspage">
+  <!-- Events page -->
+  <template id="eventpage">
     <div>
       <div class="container">
         <spinnercomp v-if="loading"></spinnercomp>
@@ -169,41 +169,6 @@
           ></eventcard>
         </div>
       </div>
-      <footercomp></footercomp>
-    </div>
-  </template>
-
-  <!-- Regs page -->
-  <template id="regpage">
-    <div>
-      <div class="container">
-        <spinnercomp v-if="loading"></spinnercomp>
-        <div class="row">
-          <eventcard
-            v-for="(event, key) in events"
-            :event="event"
-            :key="key"
-          ></eventcard>
-        </div>
-      </div>
-      <footercomp></footercomp>
-    </div>
-  </template>
-
-  <!-- Nats page -->
-  <template id="natpage">
-    <div>
-      <div class="container">
-        <spinnercomp v-if="loading"></spinnercomp>
-        <div class="row">
-          <eventcard
-            v-for="(event, key) in events"
-            :event="event"
-            :key="key"
-          ></eventcard>
-        </div>
-      </div>
-
       <footercomp></footercomp>
     </div>
   </template>
@@ -234,7 +199,7 @@
     <!-- <script src="https://unpkg.com/vue/dist/vue.js"></script> -->
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
     <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/miso.dataset@0.4.1/dist/miso.ds.deps.min.0.4.1.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://use.fontawesome.com/9dccc81e5b.js"></script>
     <script src="code.js"></script>
   </body>
