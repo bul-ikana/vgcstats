@@ -3,7 +3,7 @@
 //                         //
 
 //https://sheets.googleapis.com/v4/spreadsheets/1z28nMvWohrDjOQ4WiGkmLBUVgC1XeQA4caS6L8jLsn4/values/CP-TOTAL!A1:E20000?key=AIzaSyC3FsbFxets0WTIJXOYC88vqQb-Bc6mZKg
-const SHEET_ID = "1z28nMvWohrDjOQ4WiGkmLBUVgC1XeQA4caS6L8jLsn4";
+const SHEET_ID = "1mpF1j7iDkzQzf9a1scwfwt9q3abapYg-Jspos_UtXRk";
 const API_KEY = "AIzaSyC3FsbFxets0WTIJXOYC88vqQb-Bc6mZKg";
 
 function getApiUrl (range) {
@@ -82,8 +82,8 @@ const statspage = Vue.component('statspage', {
       search: '',
       loading: true,
       alert: window.location.hash == '#sent',
-      begindate: "2018-01-01",
-      enddate: "2018-12-31",
+      begindate: "2018-09-04",
+      enddate: "2019-08-31",
     }
   },
 
@@ -134,40 +134,49 @@ const statspage = Vue.component('statspage', {
     },
 
     dateyear () {
-        return this.begindate === "2018-01-01" && this.enddate === "2018-12-31";
+        return this.begindate === "2018-09-04" && this.enddate === "2019-08-31";
     },
 
-    datepreintimiroar () {
-      return this.begindate === "2018-01-01" && this.enddate === "2018-03-07";
+    datesun () {
+      return this.begindate === "2018-09-04" && this.enddate === "2019-01-07";
     },
 
-    dateintimiroar () {
-      return this.begindate === "2018-03-08" && this.enddate === "2018-12-31";
+    datemoon () {
+      return this.begindate === "2019-01-08" && this.enddate === "2019-04-11";
+    },
+
+    dateultra () {
+      return this.begindate === "2019-04-02" && this.enddate === "2019-08-31";
     },
 
     datecustom () {
-      return !this.dateyear && !this.dateintimiroar && !this.datepreintimiroar;
+      return !this.dateyear && !this.datesun && !this.datemoon && !this.dateultra;
     }
   },
 
   methods: {
     setdateyear: function () {
-      this.begindate = "2018-01-01";
-      this.enddate = "2018-12-31";
+      this.begindate = "2018-09-04";
+      this.enddate = "2019-08-31";
     },
 
-    setdatepreintimiroar: function () {
-      this.begindate = "2018-01-01";
-      this.enddate = "2018-03-07";
+    setdatesun: function () {
+      this.begindate = "2018-09-04";
+      this.enddate = "2019-01-07";
     },
 
-    setdateintimiroar: function () {
-      this.begindate = "2018-03-08";
-      this.enddate = "2018-12-31";
+    setdatemoon: function () {
+      this.begindate = "2019-01-08";
+      this.enddate = "2019-04-11";
+    },
+
+    setdateultra: function () {
+      this.begindate = "2019-04-02";
+      this.enddate = "2019-08-31";
     },
 
     setdatecustom: function () {
-      this.begindate = "2018-01-01";
+      this.begindate = "2018-09-04";
       this.enddate = new Date().toISOString().split('T')[0];
     }
   },
