@@ -172,7 +172,6 @@ const statspage = Vue.component('statspage', {
     }
   },
 
-
   mounted() {
     axios
       .get(getApiUrl("CP-TOTAL!B:E"))
@@ -191,11 +190,11 @@ const statspage = Vue.component('statspage', {
         data.loading = false;
       })
   }
-
 });
 
-// MSS page
-const msspage = Vue.component('msspage', {
+// Event mixin
+
+const eventMixin = {
   template: '#eventpage',
 
   data () {
@@ -208,7 +207,7 @@ const msspage = Vue.component('msspage', {
   mounted () {
 
     axios
-      .get(getApiUrl("Input-MSS"))
+      .get(getApiUrl(this.range))
       .then(response => {
 
         var data = this;
@@ -259,113 +258,45 @@ const msspage = Vue.component('msspage', {
         data.loading = false;
       })
   }
-});
+}
 
-// Regs page
+// Event pages 
+const msspage = Vue.component('msspage', {
+  mixins: [
+    eventMixin
+  ],
+
+  data: function () {
+    return {
+      range: "Input-MSS"
+    }
+  }
+})
+
 const regpage = Vue.component('regpage', {
-  template: '#eventpage',
+  mixins: [
+    eventMixin
+  ],
 
-  data () {
+  data: function () {
     return {
-      events: [],
-      loading: true
+      range: "Input-REG"
     }
-  },
-
-  mounted () {
-    var data = this;
-
-    const cpSheet = new Miso.Dataset({
-      importer : Miso.Dataset.Importers.GoogleSpreadsheet,
-      parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
-      key : "1z28nMvWohrDjOQ4WiGkmLBUVgC1XeQA4caS6L8jLsn4",
-      worksheet : "2"
-    });
-
-    var misodata = []; 
-
-    cpSheet.fetch({
-      success : function() {
-        cpSheet.where({
-          rows : function (row) { return row.Placing != null; }
-        }).sort(
-          function (a, b) {
-            return new Date(b.Date) - new Date(a.Date) || a.Standing - b.Standing;
-          }
-        ).each( function (row, index) {
-          misodata.push(row);
-        });
-        data.events = misodata.reduce( 
-          function (r, v, i, a) {
-            var k1 = v.Date;
-            var k2 = v.Region; 
-            var k3 = v.Country;
-            ( r[k1 + k2 + k3] || (r[k1 + k2 + k3] = []) ).push(v);
-            return r; 
-          }, {}
-        );
-        data.loading = false;
-      },
-
-      error : function() {
-        console.log("Are you sure you are connected to the internet?");
-      }
-    });
   }
-});
+})
 
-// Nats page
 const natpage = Vue.component('natpage', {
-  template: '#eventpage',
+  mixins: [
+    eventMixin
+  ],
 
-  data () {
+  data: function () {
     return {
-      events: [],
-      loading: true
+      range: "Input-INT"
     }
-  },
-
-  mounted () {
-    var data = this;
-
-    const cpSheet = new Miso.Dataset({
-      importer : Miso.Dataset.Importers.GoogleSpreadsheet,
-      parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
-      key : "1z28nMvWohrDjOQ4WiGkmLBUVgC1XeQA4caS6L8jLsn4",
-      worksheet : "3"
-    });
-
-    var misodata = []; 
-
-    cpSheet.fetch({
-      success : function() {
-        cpSheet.where({
-          rows : function (row) { return row.Placing != null; }
-        }).sort(
-          function (a, b) {
-            return new Date(b.Date) - new Date(a.Date) || a.Standing - b.Standing;
-          }
-        ).each( function (row, index) {
-          misodata.push(row);
-        });
-        data.events = misodata.reduce( 
-          function (r, v, i, a) {
-            var k1 = v.Date;
-            var k2 = v.Region; 
-            var k3 = v.Country;
-            ( r[k1 + k2 + k3] || (r[k1 + k2 + k3] = []) ).push(v);
-            return r; 
-          }, {}
-        );
-        data.loading = false;
-      },
-
-      error : function() {
-        console.log("Are you sure you are connected to the internet?");
-      }
-    });
   }
-});
+})
+
 
 //                   //
 // Router definition //
