@@ -270,6 +270,18 @@ const eventMixin = {
 }
 
 // Event pages 
+const pcpage = Vue.component('pcpage', {
+  mixins: [
+    eventMixin
+  ],
+
+  data: function () {
+    return {
+      range: "Input-PC"
+    }
+  }
+})
+
 const msspage = Vue.component('msspage', {
   mixins: [
     eventMixin
@@ -317,6 +329,11 @@ const router = new VueRouter ({
       path: '/',
       name: 'Stats',
       component: statspage,
+    },
+    {
+      path: '/pc',
+      name: 'PC',
+      component: pcpage
     },
     {
       path: '/mss',
