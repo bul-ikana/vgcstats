@@ -31,13 +31,6 @@ body {
   color: #868e96;
 }
 
-@media (max-width: 576px)
-{
-  .dropdown-menu {
-    width: 200%;
-  }
-}
-
 .div-card-img {
     height: 10rem;
     position: relative;
