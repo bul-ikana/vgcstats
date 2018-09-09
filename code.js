@@ -5,7 +5,16 @@
 //https://sheets.googleapis.com/v4/spreadsheets/1z28nMvWohrDjOQ4WiGkmLBUVgC1XeQA4caS6L8jLsn4/values/CP-TOTAL!A1:E20000?key=AIzaSyC3FsbFxets0WTIJXOYC88vqQb-Bc6mZKg
 const SHEET_ID = "1z28nMvWohrDjOQ4WiGkmLBUVgC1XeQA4caS6L8jLsn4";
 const API_KEY = "AIzaSyC3FsbFxets0WTIJXOYC88vqQb-Bc6mZKg";
-const API_URL = "https://sheets.googleapis.com/v4/spreadsheets/" + SHEET_ID + "/values/CP-TOTAL!B1:E20000?dateTimeRenderOption=FORMATTED_STRING&valueRenderOption=UNFORMATTED_VALUE&key=" + API_KEY;
+
+function getApiUrl (range) {
+  return "https://sheets.googleapis.com/v4/spreadsheets/" 
+    + SHEET_ID 
+    + "/values/" 
+    + range 
+    + "?dateTimeRenderOption=FORMATTED_STRING&valueRenderOption=UNFORMATTED_VALUE&key=" 
+    + API_KEY;
+}
+
 
 //                      //
 // Component definition //
@@ -166,7 +175,7 @@ const statspage = Vue.component('statspage', {
 
   mounted() {
     axios
-      .get(API_URL)
+      .get(getApiUrl("CP-TOTAL!B:E"))
       .then(response => {
         var data = this;
         data.pokemon = response.data.values.map( function (current, index, array) {
@@ -197,44 +206,58 @@ const msspage = Vue.component('msspage', {
   },
 
   mounted () {
-    var data = this;
 
-    const cpSheet = new Miso.Dataset({
-      importer : Miso.Dataset.Importers.GoogleSpreadsheet,
-      parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
-      key : "1z28nMvWohrDjOQ4WiGkmLBUVgC1XeQA4caS6L8jLsn4",
-      worksheet : "1"
-    });
+    axios
+      .get(getApiUrl("Input-MSS"))
+      .then(response => {
 
-    var misodata = []; 
+        var data = this;
 
-    cpSheet.fetch({
-      success : function() {
-        cpSheet.where({
-          rows : function (row) { return row.Placing != null; }
-        }).sort(
-          function (a, b) {
-            return new Date(b.Date) - new Date(a.Date) || a.Standing - b.Standing;
-          }
-        ).each( function (row, index) {
-          misodata.push(row);
-        });
-        data.events = misodata.reduce( 
-          function (r, v, i, a) {
-            var k1 = v.Date;
-            var k2 = v.Region; 
-            var k3 = v.Country;
-            ( r[k1 + k2 + k3] || (r[k1 + k2 + k3] = []) ).push(v);
-            return r; 
-          }, {}
-        );
+        data.events = response.data.values
+          .filter( row => { return row.length && row[0] !== '' && row[0] !== "Date" })
+          .sort(
+            function (a, b) {
+              return new Date(b[0]) - new Date(a[0]) || a[17] - b[17];
+            }
+          )
+          .reduce( 
+            function (r, current, i, array) {
+              let key = current[0] + current[1] + current[2]
+              if ( !r[key] ) {
+                r[key] = {
+                  Date:     current[0],
+                  Region:   current[1],
+                  Country:  current[2],
+                  Playlist: current[18],
+                  teams:    [],
+                }
+              }
+
+              let team = {}
+              team["Player"]    = current[4]
+              team["Placing"]   = current[3]
+              team["Standing"]  = current[17]
+              team["Pokemon 1"] = current[5]
+              team["Pokemon 2"] = current[6]
+              team["Pokemon 3"] = current[7]
+              team["Pokemon 4"] = current[8]
+              team["Pokemon 5"] = current[9]
+              team["Pokemon 6"] = current[10]
+              team["Img1"]      = current[11]
+              team["Img2"]      = current[12]
+              team["Img3"]      = current[13]
+              team["Img4"]      = current[14]
+              team["Img5"]      = current[15]
+              team["Img6"]      = current[16]
+              
+              r[key].teams.push(team);
+
+              return r; 
+            }, {}
+          )
+
         data.loading = false;
-      },
-
-      error : function() {
-        console.log("Are you sure you are connected to the internet?");
-      }
-    });
+      })
   }
 });
 
