@@ -82,8 +82,8 @@ const statspage = Vue.component('statspage', {
       search: '',
       loading: true,
       alert: window.location.hash == '#sent',
-      begindate: "2018-01-01",
-      enddate: "2018-12-31",
+      begindate: "2018-09-04",
+      enddate: "2019-08-31",
     }
   },
 
@@ -134,40 +134,49 @@ const statspage = Vue.component('statspage', {
     },
 
     dateyear () {
-        return this.begindate === "2018-01-01" && this.enddate === "2018-12-31";
+        return this.begindate === "2018-09-04" && this.enddate === "2019-08-31";
     },
 
-    datepreintimiroar () {
-      return this.begindate === "2018-01-01" && this.enddate === "2018-03-07";
+    datesun () {
+      return this.begindate === "2018-09-04" && this.enddate === "2019-01-07";
     },
 
-    dateintimiroar () {
-      return this.begindate === "2018-03-08" && this.enddate === "2018-12-31";
+    datemoon () {
+      return this.begindate === "2019-01-08" && this.enddate === "2019-04-11";
+    },
+
+    dateultra () {
+      return this.begindate === "2019-04-02" && this.enddate === "2019-08-31";
     },
 
     datecustom () {
-      return !this.dateyear && !this.dateintimiroar && !this.datepreintimiroar;
+      return !this.dateyear && !this.datesun && !this.datemoon && !this.dateultra;
     }
   },
 
   methods: {
     setdateyear: function () {
-      this.begindate = "2018-01-01";
-      this.enddate = "2018-12-31";
+      this.begindate = "2018-09-04";
+      this.enddate = "2019-08-31";
     },
 
-    setdatepreintimiroar: function () {
-      this.begindate = "2018-01-01";
-      this.enddate = "2018-03-07";
+    setdatesun: function () {
+      this.begindate = "2018-09-04";
+      this.enddate = "2019-01-07";
     },
 
-    setdateintimiroar: function () {
-      this.begindate = "2018-03-08";
-      this.enddate = "2018-12-31";
+    setdatemoon: function () {
+      this.begindate = "2019-01-08";
+      this.enddate = "2019-04-11";
+    },
+
+    setdateultra: function () {
+      this.begindate = "2019-04-02";
+      this.enddate = "2019-08-31";
     },
 
     setdatecustom: function () {
-      this.begindate = "2018-01-01";
+      this.begindate = "2018-09-04";
       this.enddate = new Date().toISOString().split('T')[0];
     }
   },

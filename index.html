@@ -116,13 +116,16 @@
 
         <div class="btn-group btn-group-toggle mb-1 d-flex" role="group" data-toggle="buttons" id="date-buttons">
           <label class="btn w-100 btn-outline-secondary" :class="{ active: dateyear }">
-            <input @click="setdateyear" type="radio" name="options" id="option1" autocomplete="off" checked> 2018
+            <input @click="setdateyear" type="radio" name="options" id="option1" autocomplete="off" checked> 2019
           </label>
-          <label class="btn w-100 btn-outline-secondary" :class="{ active: datepreintimiroar }">
-            <input @click="setdatepreintimiroar" type="radio" name="options" id="option2" autocomplete="off"> Pre Incineroar 
+          <label class="btn w-100 btn-outline-secondary" :class="{ active: datesun }">
+            <input @click="setdatesun" type="radio" name="options" id="option2" autocomplete="off"> Sun
           </label>
-          <label class="btn w-100 btn-outline-secondary" :class="{ active: dateintimiroar }">
-            <input @click="setdateintimiroar" type="radio" name="options" id="option2" autocomplete="off"> Post Incineroar 
+          <label class="btn w-100 btn-outline-secondary" :class="{ active: datemoon }">
+            <input @click="setdatemoon" type="radio" name="options" id="option2" autocomplete="off"> Moon
+          </label>
+          <label class="btn w-100 btn-outline-secondary" :class="{ active: dateultra }">
+            <input @click="setdateultra" type="radio" name="options" id="option2" autocomplete="off"> Ultra
           </label>
           <label class="btn w-100 btn-outline-secondary" :class="{ active: datecustom }">
             <input @click="setdatecustom" type="radio" name="options" id="option3" autocomplete="off"> Custom
