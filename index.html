@@ -156,8 +156,8 @@
     </div>
   </template>
 
-  <!-- MSS page -->
-  <template id="msspage">
+  <!-- Events page -->
+  <template id="eventpage">
     <div>
       <div class="container">
         <spinnercomp v-if="loading"></spinnercomp>
@@ -169,41 +169,6 @@
           ></eventcard>
         </div>
       </div>
-      <footercomp></footercomp>
-    </div>
-  </template>
-
-  <!-- Regs page -->
-  <template id="regpage">
-    <div>
-      <div class="container">
-        <spinnercomp v-if="loading"></spinnercomp>
-        <div class="row">
-          <eventcard
-            v-for="(event, key) in events"
-            :event="event"
-            :key="key"
-          ></eventcard>
-        </div>
-      </div>
-      <footercomp></footercomp>
-    </div>
-  </template>
-
-  <!-- Nats page -->
-  <template id="natpage">
-    <div>
-      <div class="container">
-        <spinnercomp v-if="loading"></spinnercomp>
-        <div class="row">
-          <eventcard
-            v-for="(event, key) in events"
-            :event="event"
-            :key="key"
-          ></eventcard>
-        </div>
-      </div>
-
       <footercomp></footercomp>
     </div>
   </template>

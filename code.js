@@ -196,7 +196,7 @@ const statspage = Vue.component('statspage', {
 
 // MSS page
 const msspage = Vue.component('msspage', {
-  template: '#msspage',
+  template: '#eventpage',
 
   data () {
     return {
@@ -263,7 +263,7 @@ const msspage = Vue.component('msspage', {
 
 // Regs page
 const regpage = Vue.component('regpage', {
-  template: '#regpage',
+  template: '#eventpage',
 
   data () {
     return {
@@ -316,7 +316,7 @@ const regpage = Vue.component('regpage', {
 
 // Nats page
 const natpage = Vue.component('natpage', {
-  template: '#natpage',
+  template: '#eventpage',
 
   data () {
     return {
