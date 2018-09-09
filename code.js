@@ -3,7 +3,7 @@
 //                         //
 
 //https://sheets.googleapis.com/v4/spreadsheets/1z28nMvWohrDjOQ4WiGkmLBUVgC1XeQA4caS6L8jLsn4/values/CP-TOTAL!A1:E20000?key=AIzaSyC3FsbFxets0WTIJXOYC88vqQb-Bc6mZKg
-const SHEET_ID = "1z28nMvWohrDjOQ4WiGkmLBUVgC1XeQA4caS6L8jLsn4";
+const SHEET_ID = "1mpF1j7iDkzQzf9a1scwfwt9q3abapYg-Jspos_UtXRk";
 const API_KEY = "AIzaSyC3FsbFxets0WTIJXOYC88vqQb-Bc6mZKg";
 
 function getApiUrl (range) {
