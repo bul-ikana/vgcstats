@@ -106,6 +106,7 @@
           Playlist submitted. Thank you!
       </b-alert>
 
+      <!-- Search bar -->
       <div v-show="!loading">
         <div class="input-group mb-1">
           <div class="input-group-prepend">
@@ -114,6 +115,7 @@
           <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search bar" v-model="search">
         </div>
 
+        <!-- Time filtering -->
         <div class="btn-group btn-group-toggle mb-1 d-flex" role="group" data-toggle="buttons" id="date-buttons">
           <label class="btn w-100 btn-outline-secondary" :class="{ active: dateyear }">
             <input @click="setdateyear" type="radio" name="options" id="option1" autocomplete="off" checked> 2019
@@ -142,8 +144,24 @@
           </div>
           <input type="date" value="enddate" class="form-control" name="edate" v-model="enddate">
         </div>
+
+        <!-- Event filtering -->
+        <div class="btn-group btn-group-toggle mb-1 d-flex" role="group" data-toggle="buttons" id="date-buttons">
+          <label class="btn w-100 btn-outline-secondary" :class="{ active: pcon }">
+            <input @click="togglepc" type="checkbox" name="options" id="option1" autocomplete="off"> PC
+          </label>
+          <label class="btn w-100 btn-outline-secondary" :class="{ active: msson }">
+            <input @click="togglemss" type="checkbox" name="options" id="option2" autocomplete="off"> MSS
+          </label>
+          <label class="btn w-100 btn-outline-secondary" :class="{ active: regson }">
+            <input @click="toggleregs" type="checkbox" name="options" id="option2" autocomplete="off"> Regs
+          </label>
+          <label class="btn w-100 btn-outline-secondary" :class="{ active: natson }">
+            <input @click="togglenats" type="checkbox" name="options" id="option2" autocomplete="off"> Nats
+          </label>
+        </div>
       </div>
-      
+
       <div class="row">
         <pokecard 
           :tcp="totalCP"

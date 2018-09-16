@@ -83,6 +83,10 @@ const statspage = Vue.component('statspage', {
       alert: window.location.hash == '#sent',
       begindate: "2018-09-04",
       enddate: "2019-08-31",
+      pcon: true,
+      msson: true,
+      regson: true,
+      natson: true,
     }
   },
 
@@ -92,7 +96,14 @@ const statspage = Vue.component('statspage', {
       return this.pokemon
         .filter(poke => {
             let pokedate = new Date(poke.Date);
-            return pokedate >= new Date(this.begindate) && pokedate <= new Date(this.enddate);
+            return pokedate >= new Date(this.begindate)
+                && pokedate <= new Date(this.enddate)
+                && ( ( this.pcon && poke.Event === "PC" )
+                  || ( this.msson && poke.Event === "MSS" )
+                  || ( this.regson && poke.Event === "REG" )
+                  || ( this.natson && poke.Event === "INT" )
+                )
+                
         })
         .reduce( function (r, v, i, a) {
 
@@ -150,7 +161,7 @@ const statspage = Vue.component('statspage', {
 
     datecustom () {
       return !this.dateyear && !this.datesun && !this.datemoon && !this.dateultra;
-    }
+    },
   },
 
   methods: {
@@ -177,7 +188,23 @@ const statspage = Vue.component('statspage', {
     setdatecustom: function () {
       this.begindate = "2018-09-04";
       this.enddate = new Date().toISOString().split('T')[0];
-    }
+    },
+
+    togglepc () {
+      this.pcon = !this.pcon
+    },
+
+    togglemss () {
+      this.msson = !this.msson
+    },
+
+    toggleregs () {
+      this.regson = !this.regson
+    },
+
+    togglenats () {
+      this.natson = !this.natson
+    },
   },
 
   mounted() {
@@ -192,6 +219,7 @@ const statspage = Vue.component('statspage', {
             poke[array[0][1]] = current[1]
             poke[array[0][2]] = current[2]
             poke[array[0][3]] = current[3]
+            poke[array[0][4]] = current[4]
           }
           return poke
         });
