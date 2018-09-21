@@ -36,7 +36,7 @@
   <!-- patreonbar -->
   <template id="patreonbar"> 
     <div class="alert alert-primary" role="alert">
-      Thank you to this month's patrons: Gabby Snyder, InciniumVGC, JamesCo, Summer Hunter, and Rakom. Support us here: <a href="#" class="alert-link">an example link</a> !
+      Thank you to this month's patrons: <span v-for="(patron,index) in patrons">{{patron[0]}}<span v-if="index!==patrons.length-1">, </span><span v-if="index==patrons.length-2">and </span></span>. Support us <a href="https://www.patreon.com/vgcstats" class="alert-link">here</a>!
     </div>
   </template>
 
@@ -113,7 +113,7 @@
           Playlist submitted. Thank you!
       </b-alert>
       <!-- patreonbar -->
-      <patreonbar>
+      <patreonbar v-if="!loading" v-cloak>
       </patreonbar>
       <!-- Search bar -->
       <div v-show="!loading">

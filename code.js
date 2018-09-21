@@ -33,7 +33,19 @@ const footercomp = Vue.component('footercomp', {
 
 // Patreon bar
 const patreonbar = Vue.component('patreonbar', {
-template: '#patreonbar'
+template: '#patreonbar',
+
+data(){return{patrons:[]}},
+
+beforeCreate()
+  {axios.get
+    (getApiUrl("patreon!A:B")).then(response => {
+      var data=this
+      data.patrons=response.data.values
+      console.log(data.patrons)
+    })
+  }
+
 });
 
 // Pokemon card

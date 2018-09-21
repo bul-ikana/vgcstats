@@ -2,6 +2,16 @@
      display: none;
 }
 
+.alert-primary {
+  color: #0b55a5;
+  background-color: #ddedfd;
+  border-color: #b8daff;
+}
+
+.alert-primary .alert-link{
+  color: #2b4f77;
+}
+
 body {
   position: relative;
   margin-bottom: 50px;
