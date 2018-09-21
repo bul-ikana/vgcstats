@@ -33,6 +33,13 @@
     </div>
   </template>
 
+  <!-- patreonbar -->
+  <template id="patreonbar"> 
+    <div class="alert alert-primary" role="alert">
+      Thank you to this month's patrons: <span v-for="(patron,index) in patrons">{{patron[0]}}<span v-if="index!==patrons.length-1">, </span><span v-if="index==patrons.length-2">and </span></span>. Support us <a href="https://www.patreon.com/vgcstats" class="alert-link">here</a>!
+    </div>
+  </template>
+
   <!-- Footer bar -->
   <template id="footercomp">
     <nav class="navbar navbar-dark submit-bar fixed-bottom" style="width: 100%;">
@@ -105,7 +112,9 @@
         v-cloak>
           Playlist submitted. Thank you!
       </b-alert>
-
+      <!-- patreonbar -->
+      <patreonbar v-if="!loading" v-cloak>
+      </patreonbar>
       <!-- Search bar -->
       <div v-show="!loading">
         <div class="input-group mb-1">
