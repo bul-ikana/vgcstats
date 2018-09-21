@@ -33,6 +33,13 @@
     </div>
   </template>
 
+  <!-- patreonbar -->
+  <template id="patreonbar"> 
+    <div class="alert alert-primary" role="alert">
+      Thank you to this month's patrons: Gabby Snyder, InciniumVGC, JamesCo, Summer Hunter, and Rakom. Support us here: <a href="#" class="alert-link">an example link</a> !
+    </div>
+  </template>
+
   <!-- Footer bar -->
   <template id="footercomp">
     <nav class="navbar navbar-dark submit-bar fixed-bottom" style="width: 100%;">
@@ -105,7 +112,9 @@
         v-cloak>
           Playlist submitted. Thank you!
       </b-alert>
-
+      <!-- patreonbar -->
+      <patreonbar>
+      </patreonbar>
       <!-- Search bar -->
       <div v-show="!loading">
         <div class="input-group mb-1">

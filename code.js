@@ -31,6 +31,11 @@ const footercomp = Vue.component('footercomp', {
   template: '#footercomp'
 });
 
+// Patreon bar
+const patreonbar = Vue.component('patreonbar', {
+template: '#patreonbar'
+});
+
 // Pokemon card
 const pokecard = Vue.component('pokecard', {
   template: '#pokecard',
