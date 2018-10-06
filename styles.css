@@ -63,7 +63,7 @@ body {
 
 .submit-bar {
   display: block;
-  background-color: #e9ecef;
+  background-color: none;
 }
 
 .collapsed.card-header .c-up {

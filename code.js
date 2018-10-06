@@ -365,6 +365,12 @@ const natpage = Vue.component('natpage', {
   }
 })
 
+// Submit page
+
+const submitpage = Vue.component('submitpage', {
+  template: '#submitpage'
+})
+
 
 //                   //
 // Router definition //
@@ -396,6 +402,11 @@ const router = new VueRouter ({
       path: '/nats',
       name: 'Nats',
       component: natpage
+    },
+    {
+      path: '/submit',
+      name: 'Submit',
+      component: submitpage,
     },
     {
       path: '*',
