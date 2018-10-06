@@ -43,7 +43,7 @@
   <!-- Footer bar -->
   <template id="footercomp">
     <nav class="navbar navbar-dark submit-bar fixed-bottom" style="width: 100%;">
-      <router-link to="/submit" class="btn btn-success float-right">Submit your results!</router-link>
+      <router-link to="/submit" class="btn btn-success float-right">Submit results!</router-link>
     </nav>
   </template>
 
@@ -203,7 +203,7 @@
   <!-- Submit page -->
   <template id="submitpage">
     <div class="container">
-      <h3>Submit your results!</h3>
+      <h3>Submit results!</h3>
       <div>If you are a TO, a player, or a caster and you want to report results, VOD playlists, or you just want to tell us something please use this form. Thank you!</div>
       <hr>
       <form action="https://formcarry.com/s/r1hYPGmKf" method="POST" accept-charset="UTF-8" >
@@ -269,10 +269,10 @@
           <a class="text-muted nav-item nav-link" href="https://articles.vgcstats.com">Articles</a>
 
           <b-nav-item-dropdown class="text-muted nav-item-dropdown nav-link" text="Events">
-            <router-link class="text-muted nav-item nav-link" v-cloak to="/pc">PC</router-link>
-            <router-link class="text-muted nav-item nav-link" v-cloak to="/mss">MSS</router-link>
-            <router-link class="text-muted nav-item nav-link" v-cloak to="/regs">Regs</router-link>
-            <router-link class="text-muted nav-item nav-link" v-cloak to="/nats">Nats</router-link>
+            <b-dropdown-item><router-link class="text-muted nav-item nav-link" v-cloak to="/pc">PC</router-link></b-dropdown-item>
+            <b-dropdown-item><router-link class="text-muted nav-item nav-link" v-cloak to="/mss">MSS</router-link></b-dropdown-item>
+            <b-dropdown-item><router-link class="text-muted nav-item nav-link" v-cloak to="/regs">Regs</router-link></b-dropdown-item>
+            <b-dropdown-item><router-link class="text-muted nav-item nav-link" v-cloak to="/nats">Nats</router-link></b-dropdown-item>
           </b-nav-item-dropdown>
 
           
