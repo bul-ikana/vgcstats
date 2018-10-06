@@ -201,11 +201,10 @@
   </template>
 
   <!-- Submit page -->
-
   <template id="submitpage">
     <div class="container">
-      <h3>Submit a playlist!</h3>
-      <small>If you are a TO or a caster and you want to add the a playlist with VODs from your event to the site please write to us and we will add it as soon as we can.</small>
+      <h3>Submit your results!</h3>
+      <div>If you are a TO, a player, or a caster and you want to report results, VOD playlists, or you just want to tell us something please use this form. Thank you!</div>
       <hr>
       <form action="https://formcarry.com/s/r1hYPGmKf" method="POST" accept-charset="UTF-8" >
 
@@ -216,15 +215,34 @@
         </div>
 
         <div class="form-group">
-          <label for="playlist">Playlist</label>
-          <input type="text" name="playlist" id="playlist" class="form-control" required>
-          <small id="emailHelp" class="form-text text-muted">The link to the playlist.</small>
+          <label for="event">Event</label>
+          <input type="text" name="event" id="event" class="form-control" required>
+          <small id="eventHelp" class="form-text text-muted">Please tell us the type (MSS, Reg), date, country and region of the event you are submitting.</small>
         </div>
 
         <div class="form-group">
-          <label for="event">Event</label>
-          <input type="text" name="event" id="event" class="form-control" required>
-          <small id="emailHelp" class="form-text text-muted">Please tell us for which event you are submitting the playlist.</small>
+          <label for="event">Image</label><br>
+          <input 
+            type="hidden"
+            role="uploadcare-uploader" 
+            name="image"
+            data-crop="disabled"
+            data-preview-step="true"
+            data-images-only="true" 
+          />
+          <small id="imageHelp" class="form-text text-muted">If you want to send us results using an image, please add it here.</small>
+        </div>        
+
+        <div class="form-group">
+          <label for="playlist">VOD Playlist</label>
+          <input type="text" name="playlist" id="playlist" class="form-control">
+          <small id="playlistHelp" class="form-text text-muted">If your event has a VOD playlist in youtube or other video service, please add it here.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="extra">Anything else</label>
+          <textarea name="extra" id="extra" class="form-control" rows="3" required></textarea>
+          <small id="extraHelp" class="form-text text-muted">If you want to tell us something else, or you just want to write results as text, here is the place.</small>
         </div>
 
         <input type="hidden" name="_gotcha">

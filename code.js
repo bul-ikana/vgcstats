@@ -375,6 +375,15 @@ const submitpage = Vue.component('submitpage', {
     recaptcha.setAttribute('src', 'https://www.google.com/recaptcha/api.js')
     recaptcha.async = true
     document.body.appendChild(recaptcha)
+
+    let configuploadcare = document.createElement('script')
+    configuploadcare.text = 'UPLOADCARE_LOCALE = "en"; UPLOADCARE_TABS = "file url facebook instagram"; UPLOADCARE_PUBLIC_KEY = "dbe8b3c6c727ce924002";'
+    document.body.appendChild(configuploadcare)
+
+    let uploadcare = document.createElement('script')
+    uploadcare.setAttribute('src', 'https://ucarecdn.com/libs/widget/3.6.1/uploadcare.full.min.js')
+    uploadcare.charset = 'utf-8'
+    document.body.appendChild(uploadcare)
   }
 })
 
