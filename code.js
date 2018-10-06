@@ -368,7 +368,14 @@ const natpage = Vue.component('natpage', {
 // Submit page
 
 const submitpage = Vue.component('submitpage', {
-  template: '#submitpage'
+  template: '#submitpage',
+
+  mounted () {
+    let recaptcha = document.createElement('script')
+    recaptcha.setAttribute('src', 'https://www.google.com/recaptcha/api.js')
+    recaptcha.async = true
+    document.body.appendChild(recaptcha)
+  }
 })
 
 
