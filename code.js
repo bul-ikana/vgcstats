@@ -33,19 +33,22 @@ const footercomp = Vue.component('footercomp', {
 
 // Patreon bar
 const patreonbar = Vue.component('patreonbar', {
-template: '#patreonbar',
+  template: '#patreonbar',
 
-data(){return{patrons:[]}},
+  data () {
+    return {
+      patrons:[]
+    }
+  },
 
-beforeCreate()
-  {axios.get
-    (getApiUrl("patreon!A:B")).then(response => {
-      var data=this
-      data.patrons=response.data.values
-      console.log(data.patrons)
-    })
+  beforeCreate () {
+    axios
+      .get(getApiUrl("patreon!A:B"))
+      .then(response => {
+        var data = this
+        data.patrons = response.data.values
+      })
   }
-
 });
 
 // Pokemon card
@@ -362,6 +365,28 @@ const natpage = Vue.component('natpage', {
   }
 })
 
+// Submit page
+
+const submitpage = Vue.component('submitpage', {
+  template: '#submitpage',
+
+  mounted () {
+    let recaptcha = document.createElement('script')
+    recaptcha.setAttribute('src', 'https://www.google.com/recaptcha/api.js')
+    recaptcha.async = true
+    document.body.appendChild(recaptcha)
+
+    let configuploadcare = document.createElement('script')
+    configuploadcare.text = 'UPLOADCARE_LOCALE = "en"; UPLOADCARE_TABS = "file url facebook instagram"; UPLOADCARE_PUBLIC_KEY = "dbe8b3c6c727ce924002";'
+    document.body.appendChild(configuploadcare)
+
+    let uploadcare = document.createElement('script')
+    uploadcare.setAttribute('src', 'https://ucarecdn.com/libs/widget/3.6.1/uploadcare.full.min.js')
+    uploadcare.charset = 'utf-8'
+    document.body.appendChild(uploadcare)
+  }
+})
+
 
 //                   //
 // Router definition //
@@ -393,6 +418,11 @@ const router = new VueRouter ({
       path: '/nats',
       name: 'Nats',
       component: natpage
+    },
+    {
+      path: '/submit',
+      name: 'Submit',
+      component: submitpage,
     },
     {
       path: '*',
