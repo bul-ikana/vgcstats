@@ -43,7 +43,7 @@
   <!-- Footer bar -->
   <template id="footercomp">
     <nav class="navbar navbar-dark submit-bar fixed-bottom" style="width: 100%;">
-      <a href="submit.html" class="btn btn-success float-right">Submit a playlist</a>
+      <router-link to="/submit" class="btn btn-success float-right">Submit results!</router-link>
     </nav>
   </template>
 
@@ -188,18 +188,70 @@
 
   <!-- Events page -->
   <template id="eventpage">
-    <div>
-      <div class="container">
-        <spinnercomp v-if="loading"></spinnercomp>
-        <div class="row">
-          <eventcard
-            v-for="(event, key) in events"
-            :event="event"
-            :key="key"
-          ></eventcard>
-        </div>
+    <div class="container">
+      <spinnercomp v-if="loading"></spinnercomp>
+      <div class="row">
+        <eventcard
+          v-for="(event, key) in events"
+          :event="event"
+          :key="key"
+        ></eventcard>
       </div>
-      <footercomp></footercomp>
+    </div>
+  </template>
+
+  <!-- Submit page -->
+  <template id="submitpage">
+    <div class="container">
+      <h3>Submit results!</h3>
+      <div>If you are a TO, a player, or a caster and you want to report results, VOD playlists, or you just want to tell us something please use this form. Thank you!</div>
+      <hr>
+      <form action="https://formcarry.com/s/r1hYPGmKf" method="POST" accept-charset="UTF-8" >
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" class="form-control" required>
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="event">Event</label>
+          <input type="text" name="event" id="event" class="form-control" required>
+          <small id="eventHelp" class="form-text text-muted">Please tell us the type (MSS, Reg), date, country and region of the event you are submitting.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="event">Image</label><br>
+          <input 
+            type="hidden"
+            role="uploadcare-uploader" 
+            name="image"
+            data-crop="disabled"
+            data-preview-step="true"
+            data-images-only="true" 
+          />
+          <small id="imageHelp" class="form-text text-muted">If you want to send us results using an image, please add it here.</small>
+        </div>        
+
+        <div class="form-group">
+          <label for="playlist">VOD Playlist</label>
+          <input type="text" name="playlist" id="playlist" class="form-control">
+          <small id="playlistHelp" class="form-text text-muted">If your event has a VOD playlist in youtube or other video service, please add it here.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="extra">Anything else</label>
+          <textarea name="extra" id="extra" class="form-control" rows="3" required></textarea>
+          <small id="extraHelp" class="form-text text-muted">If you want to tell us something else, or you just want to write results as text, here is the place.</small>
+        </div>
+
+        <input type="hidden" name="_gotcha">
+
+        <div class="g-recaptcha" data-sitekey="6LdJB0wUAAAAAM3OYBMsSLXIVfxyhJExRAT4udvl"></div>
+        <br>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
     </div>
   </template>
   
@@ -217,10 +269,10 @@
           <a class="text-muted nav-item nav-link" href="https://articles.vgcstats.com">Articles</a>
 
           <b-nav-item-dropdown class="text-muted nav-item-dropdown nav-link" text="Events">
-            <router-link class="text-muted nav-item nav-link" to="/pc">PC</router-link>
-            <router-link class="text-muted nav-item nav-link" to="/mss">MSS</router-link>
-            <router-link class="text-muted nav-item nav-link" to="/regs">Regs</router-link>
-            <router-link class="text-muted nav-item nav-link" to="/nats">Nats</router-link>
+            <b-dropdown-item><router-link class="text-muted nav-item nav-link" v-cloak to="/pc">PC</router-link></b-dropdown-item>
+            <b-dropdown-item><router-link class="text-muted nav-item nav-link" v-cloak to="/mss">MSS</router-link></b-dropdown-item>
+            <b-dropdown-item><router-link class="text-muted nav-item nav-link" v-cloak to="/regs">Regs</router-link></b-dropdown-item>
+            <b-dropdown-item><router-link class="text-muted nav-item nav-link" v-cloak to="/nats">Nats</router-link></b-dropdown-item>
           </b-nav-item-dropdown>
 
           
@@ -235,6 +287,7 @@
       <keep-alive> 
         <router-view></router-view>
       </keep-alive>
+      <footercomp></footercomp>
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
