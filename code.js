@@ -21,20 +21,15 @@ const pokecard = Vue.component('pokecard', {
   props: [
     'name',
     'image',
+    'name2',
+    'image2',
     'cp',
     'rank',
     'cpu',
-    'search'
+    'search',
+    'usage'
   ],
 
-  computed: {
-    hidden () {
-      return this.name 
-        ? this.name.toLowerCase().indexOf(this.search.toLowerCase()) === -1
-        : false;
-    }
-
-  }
 });
 
 // Event card
@@ -54,22 +49,19 @@ const statspage = Vue.component('statspage', {
 
   data () {
     return {
-      pokemon: [],
+      events: [],
       search: '',
       loading: true,
-      alert: window.location.hash == '#sent',
     }
   },
 
   computed: {
-
     searchPokemon() {
-      return this.pokemon
+      search = this.search
+      return this.events
         .filter(function (p) {
-          return p.cp > 0
-        })
-        .sort(function (a, b) {
-          return b.cp - a.cp;
+          return p.Pokemon1.toLowerCase().indexOf(search.toLowerCase()) !== -1 ||
+                 p.Pokemon2.toLowerCase().indexOf(search.toLowerCase()) !== -1
         })
         ;
     },
@@ -81,8 +73,8 @@ const statspage = Vue.component('statspage', {
     var cpSheet = new Miso.Dataset({
       importer : Miso.Dataset.Importers.GoogleSpreadsheet,
       parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
-      key : "10N_ttYQ66UfsKrIDckxk93g9FXjBDQe9kd4GfhLiUCo",
-      worksheet : "6"
+      key : "1IKPdv-h-DqB_lsECL4wsbgmQQTpGxn1E9vvJ9ftAKhc",
+      worksheet : "2"
       // worksheet : "12"
     });
 
@@ -90,7 +82,31 @@ const statspage = Vue.component('statspage', {
 
     cpSheet.fetch({
       success : function() {
-        data.pokemon = cpSheet.toJSON();
+        cpSheet.where({
+          rows : function (row) { return row.Placing != null; }
+        }).each( function (row, index) {
+          misodata.push(row);
+        });
+
+        data.events = misodata.reduce(function (r, v, i, a) {
+
+          if (r.some(e => e.Pokemon1 === v.Pokemon1 && e.Pokemon2 === v.Pokemon2)) {
+            r.find(e => e.Pokemon1 === v.Pokemon1 &&  e.Pokemon2 === v.Pokemon2).count++
+          } else {
+            r.push({
+              Pokemon1:  v.Pokemon1,
+              Pokemon2:  v.Pokemon2,
+              Img1:  v.Img1,
+              Img2:  v.Img2,
+              count: 1,
+              rank: 0
+            })
+          }
+          return r;
+        }, [])
+        .sort((a,b) => (b.count - a.count))
+        .map(function (v, i) {v.rank = i + 1; return v});
+
         data.loading = false;
       },
 
@@ -135,7 +151,7 @@ const teamspage = Vue.component('teamspage', {
     const cpSheet = new Miso.Dataset({
       importer : Miso.Dataset.Importers.GoogleSpreadsheet,
       parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
-      key : "10N_ttYQ66UfsKrIDckxk93g9FXjBDQe9kd4GfhLiUCo",
+      key : "1IKPdv-h-DqB_lsECL4wsbgmQQTpGxn1E9vvJ9ftAKhc",
       worksheet : "2"
     });
 
@@ -194,4 +210,12 @@ var vm = new Vue({
       loading: true,
     }
   }
+});
+
+const percentfilter = Vue.filter("percentage", function(value, decimals) {
+  if(!value) value = 0;
+  if(!decimals) decimals = 0;
+
+  value = value * 100;
+  return Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals) + "%";
 });

@@ -28,13 +28,15 @@ body {
 }
 
 .card-img-top {
-   position: absolute;  
+    position: absolute;  
+    float: left;
     top: 0;  
     bottom: 0;  
     left: 0;  
     right: 0;  
     margin: auto;
     max-height: 15rem;
+    max-width: 50%;
     width: auto;
 }
 

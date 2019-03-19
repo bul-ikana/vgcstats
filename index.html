@@ -35,19 +35,18 @@
 
   <!-- Pokemon stat card -->
   <template id ="pokecard">
-    <div class="col-md-4 col-lg-3 col-sm-6" :class="{ hidden : hidden }"> 
+    <div class="col-md-6 col-lg-6 col-sm-12" :class="{ hidden : hidden }"> 
       <div class="card text-center my-2">
         <div class="card-header h6">
-          <span class="badge badge-secondary float-left badge-pill">#{{ rank }}</span>{{ name }}
+          <span class="badge badge-secondary float-left badge-pill">#{{ rank }}</span>{{ name }} - {{ name2 }}
         </div>
-        <div class="div-card-img"><img class="card-img-top px-5 align-middle img-fluid" :src="image" alt="Card image cap"></div>
+        <div class="div-card-img">
+          <img class="card-img-top px-5 align-middle ml-5 img-fluid" :src="image" alt="Card image cap">
+          <img class="card-img-top px-5 align-middle mr-5 img-fluid" :src="image2" alt="Card image cap">
+        </div>
         <div class="card-body">
           <p class="card-text">
-            <strong>{{ cp }}</strong> WP <br>
-            <b-popover title="CP-Weighted Usage" triggers="hover" :placement="'bottom'" :target="'cpwu' + name">
-              Usage throughout all Top Cut/Day 2 finishes, weighted to that Pokemon’s total WP earnings throughout all Top Cut/Day 2 finishes. For example, if Pikachu had 25% WP-Weighted Usage, that would mean ¼ of the WP earned in Top Cut/Day 2 of 2018 tournaments was earned by Pikachu players.
-            </b-popover>
-            <small :id="'cpwu' + name"><strong>{{ cpu }}</strong> WP-WU</small>
+            <strong>{{ usage | percentage }}</strong> USAGE <br>
           </p>
         </div>
       </div>
@@ -91,11 +90,14 @@
           :cpu="poke.cpu"
           :search="search"
           v-for="poke in searchPokemon"
-          :name="poke.name"
-          :image="poke.image"
+          :name="poke.Pokemon1"
+          :name2="poke.Pokemon2"
+          :image="poke.Img1"
+          :image2="poke.Img2"
           :cp="poke.cp"
+          :usage="poke.count / events.length"
           :rank="poke.rank"
-          :key="poke.name"
+          :key="poke.Pokemon1 + poke.Pokemon2"
         ></pokecard>
       </div> 
     </div>
@@ -126,8 +128,8 @@
     <div id="app">
       <div class="jumbotron">
         <img src="https://www.serebii.net/art/th/576.png" class="float-left">
-        <h1 class="display-4">VGCStats - Worlds 2018</h1>
-        <p class="lead">A record of teams in the Pokémon World Championships 2018. By <a href="https://twitter.com/profshroomish">@profshroomish</a></p> 
+        <h1 class="display-4">VGCStats - NPA 2019</h1>
+        <p class="lead">A record of teams in NPA 2019. By <a href="https://twitter.com/profshroomish">@profshroomish</a></p> 
 
         <nav class="nav nav-fill main-nav">
           <router-link class="text-muted nav-item nav-link" to="/" exact>Pokémon</router-link>
@@ -142,8 +144,8 @@
       </keep-alive>
     </div>
     
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <!-- <script src="https://unpkg.com/vue/dist/vue.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
     <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/miso.dataset@0.4.1/dist/miso.ds.deps.min.0.4.1.js"></script>
