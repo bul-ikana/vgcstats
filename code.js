@@ -51,6 +51,7 @@ const statspage = Vue.component('statspage', {
     return {
       events: [],
       search: '',
+      total: 0,
       loading: true,
     }
   },
@@ -87,6 +88,8 @@ const statspage = Vue.component('statspage', {
         }).each( function (row, index) {
           misodata.push(row);
         });
+
+        data.total = misodata.length
 
         data.events = misodata.reduce(function (r, v, i, a) {
 
