@@ -36,8 +36,11 @@ body {
     right: 0;  
     margin: auto;
     max-height: 15rem;
-    max-width: 50%;
     width: auto;
+}
+
+.pair.card-img-top {
+    max-width: 50%;
 }
 
 .fixed-bottom {

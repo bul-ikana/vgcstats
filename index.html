@@ -34,19 +34,36 @@
   </template>
 
   <!-- Pokemon stat card -->
-  <template id ="pokecard">
+  <template id ="paircard">
     <div class="col-md-6 col-lg-6 col-sm-12" :class="{ hidden : hidden }"> 
       <div class="card text-center my-2">
         <div class="card-header h6">
           <span class="badge badge-secondary float-left badge-pill">#{{ rank }}</span>{{ name }} - {{ name2 }}
         </div>
         <div class="div-card-img">
-          <img class="card-img-top px-5 align-middle ml-5 img-fluid" :src="image" alt="Card image cap">
-          <img class="card-img-top px-5 align-middle mr-5 img-fluid" :src="image2" alt="Card image cap">
+          <img class="pair card-img-top px-5 align-middle ml-5 img-fluid" :src="image" alt="Card image cap">
+          <img class="pair card-img-top px-5 align-middle mr-5 img-fluid" :src="image2" alt="Card image cap">
         </div>
         <div class="card-body">
           <p class="card-text">
             <strong>{{ usage | percentage }}</strong> USAGE <br>
+          </p>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <!-- Pokemon stat card -->
+  <template id ="pokecard">
+    <div class="col-md-4 col-lg-3 col-sm-6" :class="{ hidden : hidden }"> 
+      <div class="card text-center my-2">
+        <div class="card-header h6">
+          <span class="badge badge-secondary float-left badge-pill">#{{ rank }}</span>{{ name }}
+        </div>
+        <div class="div-card-img"><img class="card-img-top px-5 align-middle img-fluid" :src="image" alt="Card image cap"></div>
+        <div class="card-body">
+          <p class="card-text">
+            <strong>{{ usage }}</strong> USAGE <br>
           </p>
         </div>
       </div>
@@ -72,7 +89,39 @@
   </template> 
   
   <!-- Stats page -->
-  <template id="statspage">
+  <template id="pairpage">
+    <div class="container">
+      <spinnercomp v-if="loading"></spinnercomp>
+
+      <div v-show="!loading">
+        <div class="input-group mb-1">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-search" aria-hidden="true"></i></span>
+          </div>
+          <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search bar" v-model="search">
+        </div>
+      </div>
+      
+      <div class="row">
+        <paircard 
+          :cpu="poke.cpu"
+          :search="search"
+          v-for="poke in searchPokemon"
+          :name="poke.Pokemon1"
+          :name2="poke.Pokemon2"
+          :image="poke.Img1"
+          :image2="poke.Img2"
+          :cp="poke.cp"
+          :usage="poke.count / total"
+          :rank="poke.rank"
+          :key="poke.Pokemon1 + poke.Pokemon2"
+        ></paircard>
+      </div> 
+    </div>
+  </template>
+
+    <!-- Stats page -->
+  <template id="pokepage">
     <div class="container">
       <spinnercomp v-if="loading"></spinnercomp>
 
@@ -90,14 +139,11 @@
           :cpu="poke.cpu"
           :search="search"
           v-for="poke in searchPokemon"
-          :name="poke.Pokemon1"
-          :name2="poke.Pokemon2"
-          :image="poke.Img1"
-          :image2="poke.Img2"
-          :cp="poke.cp"
-          :usage="poke.count / total"
+          :name="poke.name"
+          :image="poke.image"
+          :usage="poke.cpu"
           :rank="poke.rank"
-          :key="poke.Pokemon1 + poke.Pokemon2"
+          :key="poke.Pokemon1"
         ></pokecard>
       </div> 
     </div>
@@ -133,6 +179,7 @@
 
         <nav class="nav nav-fill main-nav">
           <router-link class="text-muted nav-item nav-link" to="/" exact>Pokémon</router-link>
+          <router-link class="text-muted nav-item nav-link" to="/pairs" exact>Pairs</router-link>
           <router-link class="text-muted nav-item nav-link" to="/teams">Teams</router-link>
           <a class="text-muted nav-item nav-link" href="https://vgcstats.com" exact>VGCStats</a>
           <a class="text-info nav-item nav-link" href="https://ko-fi.com/vgcstats">Buy us a coffee!</a>

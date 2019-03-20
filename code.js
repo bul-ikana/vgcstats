@@ -21,6 +21,30 @@ const pokecard = Vue.component('pokecard', {
   props: [
     'name',
     'image',
+    'cp',
+    'rank',
+    'cpu',
+    'search',
+    'usage'
+  ],
+
+  computed: {
+    hidden () {
+      return this.name 
+        ? this.name.toLowerCase().indexOf(this.search.toLowerCase()) === -1
+        : false;
+    }
+
+  }
+});
+
+// Pokemon card
+const paircard = Vue.component('paircard', {
+  template: '#paircard',
+  
+  props: [
+    'name',
+    'image',
     'name2',
     'image2',
     'cp',
@@ -43,9 +67,64 @@ const eventcard = Vue.component('eventcard', {
 // Pages //
 
 // Stats page
-const statspage = Vue.component('statspage', {
+const pokepage = Vue.component('pokepage', {
 
-  template: '#statspage',
+  template: '#pokepage',
+
+  data () {
+    return {
+      pokemon: [],
+      search: '',
+      loading: true,
+      total: 0,
+      alert: window.location.hash == '#sent',
+    }
+  },
+
+  computed: {
+
+    searchPokemon() {
+      return this.pokemon
+        .filter(function (p) {
+          return p.cp > 0
+        })
+        .sort(function (a, b) {
+          return b.cp - a.cp;
+        })
+        ;
+    },
+  },
+
+  mounted() {
+    var data = this;
+
+    var cpSheet = new Miso.Dataset({
+      importer : Miso.Dataset.Importers.GoogleSpreadsheet,
+      parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
+      key : "1IKPdv-h-DqB_lsECL4wsbgmQQTpGxn1E9vvJ9ftAKhc",
+      worksheet : "6"
+      // worksheet : "12"
+    });
+
+    var misodata = [];
+
+    cpSheet.fetch({
+      success : function() {
+        data.pokemon = cpSheet.toJSON();
+        data.loading = false;
+      },
+
+      error : function() {
+        console.log("Are you sure you are connected to the internet?");
+      }
+    });
+  }
+});
+
+// Stats page
+const pairpage = Vue.component('pairpage', {
+
+  template: '#pairpage',
 
   data () {
     return {
@@ -184,10 +263,15 @@ const teamspage = Vue.component('teamspage', {
 
 const router = new VueRouter ({
   routes: [
-    {
+  {
       path: '/',
       name: 'Pokémon',
-      component: statspage,
+      component: pokepage,
+    },
+    {
+      path: '/pairs',
+      name: 'Pairs',
+      component: pairpage,
     },
     {
       path: '/teams',
