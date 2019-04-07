@@ -101,7 +101,7 @@ const statspage = Vue.component('statspage', {
       search: '',
       loading: true,
       alert: window.location.hash == '#sent',
-      begindate: "2018-09-04",
+      begindate: "2019-04-02",
       enddate: "2019-08-31",
       pcon: true,
       msson: true,
