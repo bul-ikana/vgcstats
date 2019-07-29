@@ -197,7 +197,7 @@ const statspage = Vue.component('statspage', {
 
     setdatemoon: function () {
       this.begindate = "2019-01-08";
-      this.enddate = "2019-04-11";
+      this.enddate = "2019-04-01";
     },
 
     setdateultra: function () {
