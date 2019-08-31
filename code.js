@@ -81,7 +81,7 @@ const statspage = Vue.component('statspage', {
     var cpSheet = new Miso.Dataset({
       importer : Miso.Dataset.Importers.GoogleSpreadsheet,
       parser : Miso.Dataset.Parsers.GoogleSpreadsheet,
-      key : "10N_ttYQ66UfsKrIDckxk93g9FXjBDQe9kd4GfhLiUCo",
+      key : "1IuI2G-Jon4fZQ61p4e0eOLFv-GZ-q7w7RHphmfxpLoU",
       worksheet : "6"
       // worksheet : "12"
     });
