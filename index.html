@@ -136,11 +136,20 @@
           <label class="btn w-100 btn-outline-secondary" :class="{ active: datemoon }">
             <input @click="setdatemoon" type="radio" name="options" id="option2" autocomplete="off"> Moon
           </label>
+          <label class="btn w-100 btn-outline-secondary" :class="{ active: datecustom }">
+            <input @click="setdatecustom" type="radio" name="options" id="option3" autocomplete="off"> Custom
+          </label>
+        </div>
+
+        <div class="btn-group btn-group-toggle mb-1 d-flex" role="group" data-toggle="buttons" id="date-buttons">
           <label class="btn w-100 btn-outline-secondary" :class="{ active: dateultra }">
             <input @click="setdateultra" type="radio" name="options" id="option2" autocomplete="off"> Ultra
           </label>
-          <label class="btn w-100 btn-outline-secondary" :class="{ active: datecustom }">
-            <input @click="setdatecustom" type="radio" name="options" id="option3" autocomplete="off"> Custom
+          <label class="btn w-100 btn-outline-secondary" :class="{ active: dateultra19 }">
+            <input @click="setdateultra19" type="radio" name="options" id="option2" autocomplete="off"> Ultra 19
+          </label>
+          <label class="btn w-100 btn-outline-secondary" :class="{ active: dateultra20 }">
+            <input @click="setdateultra20" type="radio" name="options" id="option2" autocomplete="off"> Ultra 20
           </label>
         </div>
 

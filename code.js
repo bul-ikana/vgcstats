@@ -102,7 +102,7 @@ const statspage = Vue.component('statspage', {
       loading: true,
       alert: window.location.hash == '#sent',
       begindate: "2019-04-02",
-      enddate: "2019-08-31",
+      enddate: "2019-12-31",
       pcon: true,
       msson: true,
       regson: true,
@@ -164,7 +164,7 @@ const statspage = Vue.component('statspage', {
     },
 
     dateyear () {
-        return this.begindate === "2018-09-04" && this.enddate === "2019-08-31";
+      return this.begindate === "2018-09-04" && this.enddate === "2019-08-14";
     },
 
     datesun () {
@@ -176,18 +176,31 @@ const statspage = Vue.component('statspage', {
     },
 
     dateultra () {
-      return this.begindate === "2019-04-02" && this.enddate === "2019-08-31";
+      return this.begindate === "2019-04-02" && this.enddate === "2019-12-31";
+    },
+
+    dateultra19 () {
+      return this.begindate === "2019-04-02" && this.enddate === "2019-08-14";
+    },
+
+    dateultra20 () {
+      return this.begindate === "2019-08-15" && this.enddate === "2019-12-31";
     },
 
     datecustom () {
-      return !this.dateyear && !this.datesun && !this.datemoon && !this.dateultra;
+      return !this.dateyear     &&
+             !this.datesun      && 
+             !this.datemoon     && 
+             !this.dateultra    &&
+             !this.dateultra19  &&
+             !this.dateultra20;
     },
   },
 
   methods: {
     setdateyear: function () {
       this.begindate = "2018-09-04";
-      this.enddate = "2019-08-31";
+      this.enddate = "2019-08-14";
     },
 
     setdatesun: function () {
@@ -202,7 +215,17 @@ const statspage = Vue.component('statspage', {
 
     setdateultra: function () {
       this.begindate = "2019-04-02";
-      this.enddate = "2019-08-31";
+      this.enddate = "2019-12-31";
+    },
+
+    setdateultra19: function () {
+      this.begindate = "2019-04-02";
+      this.enddate = "2019-08-14";
+    },
+
+    setdateultra20: function () {
+      this.begindate = "2019-08-15";
+      this.enddate = "2019-12-31";
     },
 
     setdatecustom: function () {
