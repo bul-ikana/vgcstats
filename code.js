@@ -2,7 +2,7 @@
 // Basic app configuration //
 //                         //
 
-const SHEET_ID = "1HtP66BykSfSlBCV5bQwehcc2n4LfCicTyZOC0im2vpc";
+const SHEET_ID = "1oOD1ocmxaWQ0Hq6NS76v4KVhS4Ux1YlIdvn8yf5MI-E";
 const API_KEY = "AIzaSyC3FsbFxets0WTIJXOYC88vqQb-Bc6mZKg";
 
 function getApiUrl (range) {
@@ -101,12 +101,12 @@ const statspage = Vue.component('statspage', {
       search: '',
       loading: true,
       alert: window.location.hash == '#sent',
-      begindate: "2019-04-02",
-      enddate: "2019-12-31",
-      pcon: true,
-      msson: true,
+      begindate: "1999-04-02",
+      enddate: "2099-12-31",
+      pcon: false,
+      msson: false,
       regson: true,
-      natson: true,
+      natson: false,
     }
   },
 
@@ -423,29 +423,9 @@ const router = new VueRouter ({
       component: statspage,
     },
     {
-      path: '/pc',
-      name: 'PC',
-      component: pcpage
-    },
-    {
-      path: '/mss',
-      name: 'MSS',
-      component: msspage
-    },
-    {
-      path: '/regs',
-      name: 'Regs',
+      path: '/tournaments',
+      name: 'Tournaments',
       component: regpage
-    },
-    {
-      path: '/nats',
-      name: 'Nats',
-      component: natpage
-    },
-    {
-      path: '/submit',
-      name: 'Submit',
-      component: submitpage,
     },
     {
       path: '*',

@@ -124,61 +124,6 @@
           </div>
           <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search bar" v-model="search">
         </div>
-
-        <!-- Time filtering -->
-        <div class="btn-group btn-group-toggle mb-1 d-flex" role="group" data-toggle="buttons" id="date-buttons">
-          <label class="btn w-100 btn-outline-secondary" :class="{ active: dateyear }">
-            <input @click="setdateyear" type="radio" name="options" id="option1" autocomplete="off" checked> 2019
-          </label>
-          <label class="btn w-100 btn-outline-secondary" :class="{ active: datesun }">
-            <input @click="setdatesun" type="radio" name="options" id="option2" autocomplete="off"> Sun
-          </label>
-          <label class="btn w-100 btn-outline-secondary" :class="{ active: datemoon }">
-            <input @click="setdatemoon" type="radio" name="options" id="option2" autocomplete="off"> Moon
-          </label>
-          <label class="btn w-100 btn-outline-secondary" :class="{ active: datecustom }">
-            <input @click="setdatecustom" type="radio" name="options" id="option3" autocomplete="off"> Custom
-          </label>
-        </div>
-
-        <div class="btn-group btn-group-toggle mb-1 d-flex" role="group" data-toggle="buttons" id="date-buttons">
-          <label class="btn w-100 btn-outline-secondary" :class="{ active: dateultra }">
-            <input @click="setdateultra" type="radio" name="options" id="option2" autocomplete="off"> Ultra
-          </label>
-          <label class="btn w-100 btn-outline-secondary" :class="{ active: dateultra19 }">
-            <input @click="setdateultra19" type="radio" name="options" id="option2" autocomplete="off"> Ultra 19
-          </label>
-          <label class="btn w-100 btn-outline-secondary" :class="{ active: dateultra20 }">
-            <input @click="setdateultra20" type="radio" name="options" id="option2" autocomplete="off"> Ultra 20
-          </label>
-        </div>
-
-        <div class="input-group mb-3" v-show="datecustom">
-          <div class="input-group-prepend">
-            <span class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-          </div>
-          <input type="date" value="begindate" class="form-control mr-1" placeholder="Begin" name="bdate" v-model="begindate">
-          <div class="input-group-prepend" class="ml-1">
-            <span class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-          </div>
-          <input type="date" value="enddate" class="form-control" name="edate" v-model="enddate">
-        </div>
-
-        <!-- Event filtering -->
-        <div class="btn-group btn-group-toggle mb-1 d-flex" role="group" data-toggle="buttons" id="date-buttons">
-          <label class="btn w-100 btn-outline-secondary" :class="{ active: pcon }">
-            <input @click="togglepc" type="checkbox" name="options" id="option1" autocomplete="off"> PC
-          </label>
-          <label class="btn w-100 btn-outline-secondary" :class="{ active: msson }">
-            <input @click="togglemss" type="checkbox" name="options" id="option2" autocomplete="off"> MSS
-          </label>
-          <label class="btn w-100 btn-outline-secondary" :class="{ active: regson }">
-            <input @click="toggleregs" type="checkbox" name="options" id="option2" autocomplete="off"> Regs
-          </label>
-          <label class="btn w-100 btn-outline-secondary" :class="{ active: natson }">
-            <input @click="togglenats" type="checkbox" name="options" id="option2" autocomplete="off"> Nats
-          </label>
-        </div>
       </div>
 
       <div class="row">
@@ -271,28 +216,12 @@
       <div class="jumbotron">
         <img src="https://www.serebii.net/art/th/576.png" class="float-left">
         <h1 class="display-4">VGCStats</h1>
-        <p class="lead">Aiming to record every Midseason Showdown, Regional, and National VGC tournament for further analysis. By <a href="https://twitter.com/profshroomish">@profshroomish</a></p> 
+        <p class="lead">Recording every Galar Weekly tournament for further analysis. By <a href="https://twitter.com/profshroomish">@profshroomish</a></p> 
 
         <nav class="nav nav-fill main-nav">
           <router-link class="text-muted nav-item nav-link" to="/" exact>Stats</router-link>
-
-          <a class="text-muted nav-item nav-link" href="https://teams.vgcstats.com">Teams</a>
-
-          <a class="text-muted nav-item nav-link" href="https://articles.vgcstats.com">Articles</a>
-
-          <b-nav-item-dropdown class="text-muted nav-item-dropdown nav-link" text="Events">
-            <b-dropdown-item><router-link class="text-muted nav-item nav-link" v-cloak to="/pc">PC</router-link></b-dropdown-item>
-            <b-dropdown-item><router-link class="text-muted nav-item nav-link" v-cloak to="/mss">MSS</router-link></b-dropdown-item>
-            <b-dropdown-item><router-link class="text-muted nav-item nav-link" v-cloak to="/regs">Regs</router-link></b-dropdown-item>
-            <b-dropdown-item><router-link class="text-muted nav-item nav-link" v-cloak to="/nats">Nats</router-link></b-dropdown-item>
-          </b-nav-item-dropdown>
-
-          
-          <b-nav-item-dropdown class="text-muted nav-item-dropdown nav-link" text="Other">
-            <a class="text-muted nav-item nav-link" v-cloak href="https://2018.vgcstats.com">2018</a>
-            <a class="text-muted nav-item nav-link" v-cloak href="https://worlds19.vgcstats.com">Worlds 19</a>
-            <a class="text-muted nav-item nav-link" v-cloak href="https://worlds.vgcstats.com">Worlds 18</a>
-          </b-nav-item-dropdown>
+          <router-link class="text-muted nav-item nav-link" to="/tournaments" exact>Tournaments</router-link>
+          <a class="text-muted nav-item nav-link" href="https://vgcstats.com">VGCStats</a>
           <a class="text-info nav-item nav-link" href="https://www.patreon.com/vgcstats">Support us!</a>
         </nav>
       </div>
@@ -300,11 +229,11 @@
       <keep-alive> 
         <router-view></router-view>
       </keep-alive>
-      <footercomp></footercomp>
+      <!-- <footercomp></footercomp> -->
     </div>
     
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <!-- <script src="https://unpkg.com/vue/dist/vue.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
     <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
