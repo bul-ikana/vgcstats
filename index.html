@@ -36,9 +36,9 @@
 
   <!-- patreonbar -->
   <template id="patreonbar"> 
-    <div class="alert alert-primary" role="alert">
+    <b-alert class="alert alert-primary" variant="alert" show dismissible>
       Thank you to this month's patrons: <span v-for="(patron,index) in patrons">{{patron[0]}}<span v-if="index!==patrons.length-1">, </span><span v-if="index==patrons.length-2">and </span></span>. Support us <a href="https://www.patreon.com/vgcstats" class="alert-link">here</a>!
-    </div>
+    </b-alert>
   </template>
 
   <!-- Footer bar -->

@@ -124,6 +124,14 @@ label.btn-outline-secondary:not([disabled]):not(.disabled).active {
   display: none;
 }
 
+.alert-dismissible {
+    padding-right: 2rem;
+}
+
+.alert-dismissible .close {
+  padding: .75rem;
+}
+
 input[type="date"] {
   max-height: 38px;
 }
