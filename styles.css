@@ -51,7 +51,7 @@ body {
 }
 
 .div-card-img {
-    height: 10rem;
+    height: 12rem;
     position: relative;
 }
 
@@ -89,6 +89,10 @@ body {
 
 .card-header .c-dn {
   display: none;
+}
+
+.card-body {
+  padding-top: 0;
 }
 
 .btn-video {

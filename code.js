@@ -2,7 +2,7 @@
 // Basic app configuration //
 //                         //
 
-const SHEET_ID = "1HtP66BykSfSlBCV5bQwehcc2n4LfCicTyZOC0im2vpc";
+const SHEET_ID = "1R9j3RQ68KuSB6ML5LnWhSwrAxtYj7woMv-ksV1ijuAU";
 const API_KEY = "AIzaSyC3FsbFxets0WTIJXOYC88vqQb-Bc6mZKg";
 
 function getApiUrl (range) {
@@ -101,8 +101,8 @@ const statspage = Vue.component('statspage', {
       search: '',
       loading: true,
       alert: window.location.hash == '#sent',
-      begindate: "2019-04-02",
-      enddate: "2019-12-31",
+      begindate: "2020-01-04",
+      enddate: "2020-07-31",
       pcon: true,
       msson: true,
       regson: true,
@@ -162,77 +162,9 @@ const statspage = Vue.component('statspage', {
         }, 0)
         : 0;
     },
-
-    dateyear () {
-      return this.begindate === "2018-09-04" && this.enddate === "2019-08-14";
-    },
-
-    datesun () {
-      return this.begindate === "2018-09-04" && this.enddate === "2019-01-07";
-    },
-
-    datemoon () {
-      return this.begindate === "2019-01-08" && this.enddate === "2019-04-01";
-    },
-
-    dateultra () {
-      return this.begindate === "2019-04-02" && this.enddate === "2019-12-31";
-    },
-
-    dateultra19 () {
-      return this.begindate === "2019-04-02" && this.enddate === "2019-08-14";
-    },
-
-    dateultra20 () {
-      return this.begindate === "2019-08-15" && this.enddate === "2019-12-31";
-    },
-
-    datecustom () {
-      return !this.dateyear     &&
-             !this.datesun      && 
-             !this.datemoon     && 
-             !this.dateultra    &&
-             !this.dateultra19  &&
-             !this.dateultra20;
-    },
   },
 
   methods: {
-    setdateyear: function () {
-      this.begindate = "2018-09-04";
-      this.enddate = "2019-08-14";
-    },
-
-    setdatesun: function () {
-      this.begindate = "2018-09-04";
-      this.enddate = "2019-01-07";
-    },
-
-    setdatemoon: function () {
-      this.begindate = "2019-01-08";
-      this.enddate = "2019-04-01";
-    },
-
-    setdateultra: function () {
-      this.begindate = "2019-04-02";
-      this.enddate = "2019-12-31";
-    },
-
-    setdateultra19: function () {
-      this.begindate = "2019-04-02";
-      this.enddate = "2019-08-14";
-    },
-
-    setdateultra20: function () {
-      this.begindate = "2019-08-15";
-      this.enddate = "2019-12-31";
-    },
-
-    setdatecustom: function () {
-      this.begindate = "2018-09-04";
-      this.enddate = new Date().toISOString().split('T')[0];
-    },
-
     togglepc () {
       this.pcon = !this.pcon
     },
