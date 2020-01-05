@@ -51,7 +51,8 @@ body {
 }
 
 .div-card-img {
-    height: 10rem;
+    height: 12rem;
+    min-height: 200px;
     position: relative;
 }
 
@@ -91,6 +92,20 @@ body {
   display: none;
 }
 
+.card-body {
+  padding-top: 0;
+}
+
+.control {
+  margin-left:  -.25rem;
+  margin-right: -.25rem;
+}
+
+.control [class*=col-] {
+  padding-left:  .25rem;
+  padding-right: .25rem;
+}
+
 .btn-video {
   line-height: 1;
   padding: 3px 5px;
@@ -118,6 +133,14 @@ label.btn-outline-secondary:not([disabled]):not(.disabled).active {
 
 .hidden {
   display: none;
+}
+
+.alert-dismissible {
+    padding-right: 2rem;
+}
+
+.alert-dismissible .close {
+  padding: .75rem;
 }
 
 input[type="date"] {
