@@ -374,11 +374,11 @@ const router = new VueRouter ({
       name: 'Nats',
       component: natpage
     },
-    {
-      path: '/submit',
-      name: 'Submit',
-      component: submitpage,
-    },
+    // {
+    //   path: '/submit',
+    //   name: 'Submit',
+    //   component: submitpage,
+    // },
     {
       path: '*',
       redirect: '/'
