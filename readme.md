@@ -2,9 +2,9 @@
 
 A website that gathers statistics about official tournaments of the Pokémon Videogame Championship. 
 
-** This project is now archived. Thank you for all your support! **
+**This project is now archived. Thank you for all your support!**
 
-<img src="vgcstats.png" align="center">
+<img src="vgcstats.png">
 
 ## About 
 
