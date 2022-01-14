@@ -2,6 +2,10 @@
 
 A website that gathers statistics about official tournaments of the Pokémon Videogame Championship. 
 
+** This project is now archived. Thank you for all your support! **
+
+<img src="vgcstats.png" align="center">
+
 ## About 
 
 CP (Championship Points) are points awarded to players based on their finish position or placement at official events. Players need to earn a certain amount of CP to qualify to the World Championship. 
